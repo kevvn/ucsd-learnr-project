@@ -12,14 +12,18 @@ h1{
 	padding-left: 2px;
 	padding-right: 2px;
 }
+a{
+		
+	
+}
 ul {
+	background-color:rgba(178,148,148,0.71)
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 li {
-
 	display: inline;
     margin: 0;
     padding: 0;
