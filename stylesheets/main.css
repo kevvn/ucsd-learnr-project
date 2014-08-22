@@ -1,5 +1,24 @@
-h1{
-	font-size: 13px;
-	color: aqua;
+head{
+
 	
+}
+h1{
+	background-color:black;
+	font-size: 20px;
+	color: red;
+	padding: 8px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+	overflow: hidden;
+    display: inline;
 }
