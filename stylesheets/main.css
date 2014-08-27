@@ -42,6 +42,7 @@ hc1
 }
 h2
 {
+	padding-top: 10px;
 	font: normal 175% 'century gothic', arial, sans-serif;
 	color: #777;
 	font-size: 175%;
@@ -91,7 +92,7 @@ ol li
   height: 240px;}
 
 #logo
-{ width: 825px;
+{ width: 850px;
   position: relative;
   height: 168px;
   background: black url(logo.png) no-repeat;}
@@ -125,9 +126,12 @@ ol li
   color: #DDD;}
 
 #menubar
-{ width: 877px;
+{ 
+  float: left;
+  width: 850px;
   height: 72px;
-  padding: 0;
+  
+  
   background: #29415D url(menu.png) repeat-x;} 
 
 ul#menu, ul#menu li
@@ -156,6 +160,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   background: #1C2C3E url(menu_select.png) repeat-x;}
 #content
 {
+	
 	width: 595px;
 	padding: 0;
 }
