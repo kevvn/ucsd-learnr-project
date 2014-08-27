@@ -109,6 +109,8 @@ ol li
 
 #logo #logo_text 
 {
+width: 850px;
+  height: 168px;
 	color=red;
 	position: absolute;
 	top: 30px;
