@@ -22,16 +22,6 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
   
-  $scope.post = function(path) {
-	  $rootScope.apply(function(){
-		  
-		  $location.path("/template/browse.html");
-		  $location.replace();
-	  });
-	  alert(path);
-	   };
-  
-
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -61,4 +51,6 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('PlaylistCtrl', function($scope, $stateParams) {
+});
 
