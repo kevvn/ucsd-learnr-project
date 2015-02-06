@@ -17,7 +17,5 @@
     "mongodb": "*",
     "mongoose": "*"
   },
-  "engines": {
-    "node": "0.10.x"
-  }  
+   
 }
