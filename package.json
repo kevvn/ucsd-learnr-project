@@ -11,11 +11,12 @@
 
   "private": true,
   "scripts": {
-    "start": " "
+    "start": "node web.js "
   },
   "dependencies": {
     "mongodb": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "express": "4.8.4"
   },
   "engines": {
     "node": "0.10.x"
