@@ -1,1 +1,18 @@
 /* Empty. Add your own CSS if you like */
+
+input[type="search"]::-webkit-search-cancel-button {
+
+  /* Remove default */
+  -webkit-appearance: none;
+    
+  
+
+}
+
+.helpsection {
+	padding: 20px;
+}
+
+.helpsection-h2 { 
+color: blue; 
+}

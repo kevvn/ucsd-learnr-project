@@ -1,5 +1,14 @@
 <ion-view view-title="Trendr">
+
+	
+	
+  
   <ion-content>
+  
+  
+  <input type=search placeholder="Search for learning resources!" results=5 autosave=some_unique_value name=s>
+
+  
     <ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
@@ -7,3 +16,4 @@
     </ion-list>
   </ion-content>
 </ion-view>
+

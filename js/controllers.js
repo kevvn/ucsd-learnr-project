@@ -1,5 +1,6 @@
 angular.module('starter.controllers', [])
 
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
@@ -15,11 +16,21 @@ angular.module('starter.controllers', [])
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
-
+  
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
   };
+  
+  $scope.post = function(path) {
+	  $rootScope.apply(function(){
+		  
+		  $location.path("/template/browse.html");
+		  $location.replace();
+	  });
+	  alert(path);
+	   };
+  
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
@@ -31,7 +42,13 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+ 
+  
 })
+
+
+
+
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
@@ -44,5 +61,4 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+

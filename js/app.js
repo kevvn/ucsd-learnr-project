@@ -23,11 +23,22 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+
+
   .state('app', {
     url: "/app",
     abstract: true,
     templateUrl: "templates/menu.html",
     controller: 'AppCtrl'
+  })
+  
+  .state('app.help', {
+    url: "/help",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/help.html"
+      }
+    }
   })
 
   .state('app.search', {
@@ -35,6 +46,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: "templates/search.html"
+      }
+    }
+  })
+  .state('app.post', {
+    url: "/post",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/post.html"
       }
     }
   })
@@ -47,6 +66,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+    
     .state('app.playlists', {
       url: "/playlists",
       views: {
