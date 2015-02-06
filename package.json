@@ -1,15 +1,9 @@
 {
-  "name": "IntroHCI",
+  "name": "TEAM AWEOMSE PSL",
   "version": "0.0.1",
-  "author": "Intro HCI Staff",
+  "author": "michelles and kevins",
 
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/IntroHCI/lab4"
-  },
-  "license": "MIT",
-
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node web.js "
   },
