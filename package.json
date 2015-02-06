@@ -1,9 +1,9 @@
 {
-  "name": "TEAM AWEOMSE PSL",
+  "name": "teamawesompls",
   "version": "0.0.1",
   "author": "michelles and kevins",
 
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "node web.js "
   },
