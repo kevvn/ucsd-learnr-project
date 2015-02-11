@@ -6,7 +6,6 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
   
 
-  Parse.initialize("qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH", "NCteUlF8BFnxNniGAi6JqxbxxL5hKcUXlR4uECnn");
 
 
   // Create the login modal that we will use later
@@ -16,10 +15,6 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
   
-  var user = new Parse.User();
-  user.set("username", "my name");
-  user.set("password", "my pass");
-    
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -61,4 +56,6 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
+
+
 
