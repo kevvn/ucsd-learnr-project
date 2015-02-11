@@ -12,6 +12,15 @@ input[type="search"]::-webkit-search-cancel-button {
 .helpsection {
 	padding: 20px;
 }
+.pane{
+	background-color:aqua;
+	
+}
+.ion-list{
+	background-color: black;
+	
+}
+
 
 .helpsection-h2 { 
 color: blue; 
