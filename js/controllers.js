@@ -4,6 +4,10 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
+  
+
+  Parse.initialize("qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH", "NCteUlF8BFnxNniGAi6JqxbxxL5hKcUXlR4uECnn");
+
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -11,7 +15,11 @@ angular.module('starter.controllers', [])
   }).then(function(modal) {
     $scope.modal = modal;
   });
-
+  
+  var user = new Parse.User();
+  user.set("username", "my name");
+  user.set("password", "my pass");
+    
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -25,7 +33,7 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-
+	
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -42,12 +50,12 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
-    { title: 'How to Cook', id: 1 },
-    { title: 'Another Tutorial', id: 2 },
-    { title: 'Tutorials on Tutorials', id: 3 },
-    { title: 'Have you wanted to learn about', id: 4 },
-    { title: 'Learn to rap', id: 5 },
-    { title: 'How to not make an app', id: 6 }
+    { title: 'How to Cook', points: 10 },
+    { title: 'Another Tutorial', points: 2 },
+    { title: 'Tutorials on Tutorials', points: 3 },
+    { title: 'Have you wanted to learn about', points: 4 },
+    { title: 'Learn to rap', points: 5 },
+    { title: 'How to not make an app', points: 6 }
   ];
 })
 

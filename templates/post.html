@@ -1,9 +1,52 @@
-<ion-view view-title="Posting an Article">
+<ion-view view-title="Article Submission Form">
   <ion-content>
-    <h1 align=center >Article Submission Form</h1>
+  <a href="#/app" class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
+    
+ 
+
+  <div class="list">
+  <label class="item item-input item-floating-label">
+    <span class="input-label">First Name</span>
+    <input type="text" placeholder="First Name">
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Last Name</span>
+    <input type="text" placeholder="Last Name">
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Email</span>
+    <input type="text" placeholder="Email">
+  </label>
+
+
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Tags/Cateogories
+    </div>
+    <select>
+      <option>Blue</option>
+      <option selected>Green</option>
+      <option>Red</option>
+      <option>Blue</option>
+      <option>Green</option>
+      <option>Red</option>
+      <option>Blue</option>
+      <option>Green</option>
+      <option>Red</option>
+    </select>
+  </label>
+
+
+</div>
+<div>
+    <a href="#/app" ><button class="button button-positive" href= "#/app/browse" ng-click="post()">
+        Submit
+        </button></a>
+</div>
+
+
     	
-    	
-    	<label class ="item item-input">
+    <!--	<label class ="item item-input">
     	
     		<span class="input-label"> Article Title</span>
     		<input type="text">
@@ -24,7 +67,7 @@
     		<input type="text">
     	</label>
     	<a href="#/app"><button> Submit</button></a>
-    
+    -->
     
     
   </ion-content>

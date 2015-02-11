@@ -1,3 +1,35 @@
+
+ <ion-view title="TRENDR">
+
+	
+	
+
+  
+  <ion-content>
+
+  
+  <div class="list list-inset">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search for learning resources!"
+  </label>
+</div>
+  
+  <!--<input type=search placeholder="Search for learning resources!" -->
+
+  <div class="list list-inset"
+    <ion-list>
+     <ion-item ng-repeat="playlist in playlists | orderBy: '-points'" href="#/app/playlists/{{playlist.points}}">
+      <span class="badge badge-assertive" ng-click="login()">
+      {{playlist.points}}</span> {{playlist.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+</div>
+
+
+<!--
 <ion-view view-title="Trendr">
 
 	
@@ -10,10 +42,11 @@
 
   
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
+      <ion-item ng-repeat="playlist in playlists | orderBy: '-points'" href="#/app/playlists/{{playlist.points}}">
+      <button ng-click="login()" href"#/app/playlists">{{playlist.points}}</button>  {{playlist.title}}
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
 
+-->
