@@ -85,8 +85,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'PlaylistCtrl'
       }
     }
+<<<<<<< HEAD
     
     })
+=======
+  })
+>>>>>>> d438690f03793f0159a7a56203250d2c3739ccc3
 
   .state('app.favorites', {
     url: "/favorites",
@@ -96,7 +100,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
        
       }
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> d438690f03793f0159a7a56203250d2c3739ccc3
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
