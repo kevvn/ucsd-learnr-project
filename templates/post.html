@@ -1,11 +1,14 @@
 <ion-view view-title="Article Submission Form">
  
   <ion-content>
-      <form ng-submit="newPost()">
-        <label>New Post:</label>
-        <textarea ng-model="postData.text"></textarea>
-        <button type="submit" class="button button-positive button-block">Create</button>
-      </form>
+
+    <div ng-controller="PostCtrl">
+        <form ng-submit="newPost()">
+            <label>New Post:</label>
+            <input type="text" ng-model="name">
+            <button type="submit" class="button button-positive button-block">Post</button>
+        </form>
+    </div>
   <!--
   <a href="#/app" class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
     
