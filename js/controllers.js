@@ -40,39 +40,24 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 })
 
 
-app.controller('PostCtrl', ['$scope', 'PostFactory', function ($scope, PostFactory) {
-
-
-
+app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope, PostFactory, $state) {
 
     $scope.newPost = function () {
       
         console.log($scope.name);
 
-        //var post = new PostFactory.create($scope.postData);
-        //post.$save();
+        PostFactory.create({ name: $scope.name, points: 0 }).success(function (data) {
+            console.log("GOOD");
 
-        console.log("WER");
+            //$state.go('app.playlists');
+        })
 
-        /*PostFactory.create($scope.name).success(function (data) {
-            alert("SUCCESS");
-        });*/
-
+        console.log("SAVED!");
 
      }
 
 }])
 
-app.controller('PostCtrl', ['$scope', function ($scope) {
-
-
-    $scope.newPost = function () {
-
-        console.log($scope.name);
-
-    }
-
-}])
 
 
 // Parse id and rest api key
@@ -84,12 +69,12 @@ app.value('PARSE_CREDENTIALS', {
 
 app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDENTIALS) {
 
-
     return {
 
         // CRUD operations, access Parse database 
         create: function (data) {
-            return $http.get('https://api.parse.com/1/tutorials/links', data, {
+
+            return $http.post('https://api.parse.com/1/classes/PostFactory', data, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
@@ -98,8 +83,8 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
             });
         },
 
-        read: function (id) {
-            return $http.get('https://api.parse.com/1/tutorials/links/' + id, {
+        get: function (id) {
+            return $http.get('https://api.parse.com/1/classes/PostFactory/' + id, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
@@ -107,8 +92,8 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
             });
         },
 
-        readAll: function () {
-            return $http.get('https://api.parse.com/1/tutorials/links', {
+        getAll: function () {
+            return $http.get('https://api.parse.com/1/classes/PostFactory', {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
@@ -117,7 +102,7 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
         },
 
         update: function (id, data) {
-            return $http.put('https://api.parse.com/1/tutorials/links' + id, data, {
+            return $http.put('https://api.parse.com/1/classes/PostFactory' + id, data, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
@@ -128,7 +113,7 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
         },
 
         delete: function (id) {
-            return $http.delete('https://api.parse.com/1/tutorials/links' + id, {
+            return $http.delete('https://api.parse.com/1/classes/PostFactory' + id, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
@@ -144,22 +129,44 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
 
 
 
+app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, PostFactory) {
 
 
-
-
-
-
-app.controller('PlaylistsCtrl', function($scope) {
-    $scope.playlists = [
+    /*$scope.playlists = [
       { title: 'How to Cook', points: 10 },
       { title: 'Another Tutorial', points: 2 },
       { title: 'Tutorials on Tutorials', points: 3 },
       { title: 'Have you wanted to learn about', points: 4 },
       { title: 'Learn to rap', points: 5 },
       { title: 'How to not make an app', points: 6 }
-    ];
-})
+    ];*/
+
+    $scope.playlists = [];
+    
+    PostFactory.getAll().success(function (data) {
+
+        console.log("QWERQERQWERQEWR");
+
+
+        console.log(data.results.length);
+
+        // push data into playlists array
+        for (var i = 0; i < data.results.length; i++) {
+
+            //console.log("GHGH");
+            
+
+            
+
+            $scope.playlists.push({ title: data.results[i].name });
+
+            //console.log(data.results[i].name);
+        }
+
+
+    })
+
+}])
 
 app.controller('PlaylistCtrl', function($scope, $stateParams) {
 

@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'ngResource'])
+/*angular.module('ionicApp', ['ionic', 'ngResource'])
 
 .factory('Post', function($resource) {
   return $resource('/api/post/:id');
@@ -14,7 +14,7 @@ angular.module('ionicApp', ['ionic', 'ngResource'])
     var post = new Post($scope.postData);
     post.$save();
   }
-});
+});*/
 
 
 /*angular.module('starter.services', []).factory('PostFactory', ['$http', '$PARSE_CREDENTIALS', function ($http, PARSE_CREDENTIALS) {
