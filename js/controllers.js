@@ -46,10 +46,10 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
       
         console.log($scope.name);
 
-        PostFactory.create({ name: $scope.name, points: 0 }).success(function (data) {
+        PostFactory.create({ name: $scope.name, url: $scope.url, points: 0 }).success(function (data) {
             console.log("GOOD");
 
-            //$state.go('app.playlists');
+            $state.go('app.playlists');
         })
 
         console.log("SAVED!");
@@ -62,8 +62,8 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
 
 // Parse id and rest api key
 app.value('PARSE_CREDENTIALS', {
-    APP_ID: '8lI28e5lGH37hrHAcbLDVuLM9xXPWTrHCPG4rY8L',
-    REST_API_KEY: 'JyA0uBxQrL4SLqZ6tdIT4CKY1og7PW7ryCquxy8m'
+    APP_ID: 'qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH',
+    REST_API_KEY: 'QOnuKyBBU5eWfugZLIDHEoFMzMf6N8mmrZyqc6tR'
 })
 
 
@@ -158,8 +158,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
 
             
 
-            $scope.playlists.push({ title: data.results[i].name });
-
+            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points});
             //console.log(data.results[i].name);
         }
 
@@ -173,4 +172,3 @@ app.controller('PlaylistCtrl', function($scope, $stateParams) {
 
 
 })
-

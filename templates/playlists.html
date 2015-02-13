@@ -14,13 +14,11 @@
 
         <div ng-controller="PlaylistsCtrl" class="list">
             <ion-list>
-                <ion-item ng-repeat="playlist in playlists" | orderBy: '-points'" href="#/app/playlists/{{playlist.points}}">-->
-                    <span class="badge badge-assertive" ng-click="login()"><{{playlist.points}}</!--span>
-                    {{playlist.title}}
+                <ion-item ng-repeat="playlist in playlists| orderBy: '-points'" href="#/app/playlists/" >
+                   <badge>{{playlist.points}}</badge> {{playlist.title}}
                 </ion-item>
             </ion-list>
         </div>
-
+        <br>
     </ion-content>
-
 </ion-view>
