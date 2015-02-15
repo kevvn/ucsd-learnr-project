@@ -46,7 +46,7 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
 
         console.log($scope.name);
 
-        PostFactory.create({ name: $scope.name, url: $scope.url, points: 0 }).success(function (data) {
+        PostFactory.create({ name: $scope.name, url: $scope.url, points: 0, tags: $scope.tags}).success(function (data) {
             console.log("GOOD");
 
             $state.go('app.playlists');
@@ -158,16 +158,15 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
 
 
 
-            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points, tags: data.results[i].tags});
+            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points,  tags: data.results[i].tags});
             //console.log(data.results[i].name);
         }
+        
 
 
     })
-    $scope.orderProp = '-points'
+
 }])
-
-
 
 app.controller('PlaylistCtrl', function($scope, $stateParams) {
 
