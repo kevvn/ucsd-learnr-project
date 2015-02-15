@@ -3,6 +3,9 @@ TODO:
 Readup on how data interacts on angualr?
 https://docs.angularjs.org/tutorial/step_04
 
+Instead of diffbot, this one better fits our needs i think?
+embed.ly
+
 http://thejackalofjavascript.com/an-end-to-end-hybrid-app/
 
 report button?
