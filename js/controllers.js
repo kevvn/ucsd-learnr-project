@@ -46,10 +46,11 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
 
         console.log($scope.name);
 
-        PostFactory.create({ name: $scope.name, url: $scope.url, points: 0, tags: $scope.tags}).success(function (data) {
+        PostFactory.create({ name: $scope.name, url: $scope.url, points: 0, tags: $scope.tags, tags2: $scope.tags2}).success(function (data) {
             console.log("GOOD");
 
             $state.go('app.playlists');
+
         })
 
         console.log("SAVED!");
@@ -158,12 +159,14 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
 
 
 
-            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points,  tags: data.results[i].tags});
-            //console.log(data.results[i].name);
+            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points,
+                tags: data.results[i].tags,  tags2: data.results[i].tags2 });
+
         }
+        $scope.orderProp = '-points';
         
 
-
+    //    console.log(playlists.tags);
     })
 
 }])

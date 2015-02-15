@@ -4,17 +4,56 @@
 
     <div ng-controller="PostCtrl">
         <form ng-submit="newPost()">
-            <label>New Post:</label>
-            <input type="text" ng-model="name">
-            <label>URL</label>
-            <input type="text" ng-model="url">
-            <select id="simpleColorSel" ng-model="tags">
-              <option value="red">Red</option>
-              <option value="green">Green</option>
-              <option value="blue">Blue</option>
-            </select>
-                <button type="submit" class="button button-positive button-block" ><a href="/#/app/playlists">Post </a></button>
 
+          <div class="list">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Title of Post</span>
+
+            <input type="text" ng-model="name" placeholder="Title of Post">
+          </label>
+
+          <label class="item item-input item-floating-label">
+            <span class="input-label">URL</span>
+
+            <input type="text" ng-model="url" placeholder="URL">
+          </label>
+
+
+          <div class="list">
+
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Tags
+      </div>
+      <select ng-model="Category">
+        <option value="programming">Programming</option>
+        <option value="cooking">Cooking</option>
+        <option value="diy">DIY</option>
+
+        <!-- We can manually add more based on their other, possible form input? -->
+        <option value="Tags">Other</option>
+      </select>
+    </label>
+    <label class="item item-input item-select">
+      <div class="input-label">
+        More tags?
+      </div>
+      <select ng-model="tags2">
+        <option value="programming">Programming</option>
+        <option value="cooking">Cooking</option>
+        <option value="diy">DIY</option>
+
+        <!-- We can manually add more based on their other, possible form input? -->
+        <option value="other">Other</option>
+      </select>
+    </label>
+
+  </div>
+
+
+
+                <button type="submit" class="button button-positive button-block" ><a href="/#/app/playlists">Post </a></button>
+              </div>
         </form>
     </div>
 

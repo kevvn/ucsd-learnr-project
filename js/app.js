@@ -91,7 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: "/playlists/:playlistId",
+    url: "/playlists/:playlistScore",
     views: {
       'menuContent': {
         templateUrl: "templates/playlist.html",
