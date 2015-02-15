@@ -4,7 +4,7 @@ var app = angular.module('starter.controllers', []);
 app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
-  
+
 
 
 
@@ -14,36 +14,36 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   }).then(function(modal) {
     $scope.modal = modal;
   });
-  
+
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
-  
+
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
   };
-  
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-	
+
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
   };
- 
-  
+
+
 })
 
 
 app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope, PostFactory, $state) {
 
     $scope.newPost = function () {
-      
+
         console.log($scope.name);
 
         PostFactory.create({ name: $scope.name, url: $scope.url, points: 0 }).success(function (data) {
@@ -71,7 +71,7 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
 
     return {
 
-        // CRUD operations, access Parse database 
+        // CRUD operations, access Parse database
         create: function (data) {
 
             return $http.post('https://api.parse.com/1/classes/PostFactory', data, {
@@ -142,7 +142,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
     ];*/
 
     $scope.playlists = [];
-    
+
     PostFactory.getAll().success(function (data) {
 
         console.log("QWERQERQWERQEWR");
@@ -154,18 +154,20 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
         for (var i = 0; i < data.results.length; i++) {
 
             //console.log("GHGH");
-            
 
-            
 
-            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points});
+
+
+            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points, tags: data.results[i].tags});
             //console.log(data.results[i].name);
         }
 
 
     })
-
+    $scope.orderProp = '-points'
 }])
+
+
 
 app.controller('PlaylistCtrl', function($scope, $stateParams) {
 

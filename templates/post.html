@@ -1,22 +1,22 @@
 <ion-view view-title="Article Submission Form">
- 
+
   <ion-content>
 
     <div ng-controller="PostCtrl">
         <form ng-submit="newPost()">
             <label>New Post:</label>
-            <input type="text" ng-model="name">
+            <input type="text" ng-model="name" ng-required="">
             <label>URL</label>
-            <input type="text" ng-model="url">
+            <input type="text" ng-model="url" ng-required="">
                 <button type="submit" class="button button-positive button-block" ><a href="/#/app/playlists">Post </a></button>
-            
+
         </form>
     </div>
-    
+
   <!--
   <a href="#/app" class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
     2
- 
+
 
   <div class="list">
   <label class="item item-input item-floating-label">
@@ -60,30 +60,30 @@
 -->
 
 
-    	
+
     <!--	<label class ="item item-input">
-    	
+
     		<span class="input-label"> Article Title</span>
     		<input type="text">
     	</label>
     	<label class ="item item-input">
-    	
+
     		<span class="input-label"> URL</span>
     		<input type="text">
     	</label>
     	<label class ="item item-input">
-    	
+
     		<span class="input-label"> Description</span>
     		<input type="text">
     	</label>
     	<label class ="item item-input">
-    	
+
     		<span class="input-label"> Tags</span>
     		<input type="text">
     	</label>
     	<a href="#/app"><button> Submit</button></a>
     -->
-    
-    
+
+
   </ion-content>
 </ion-view>
