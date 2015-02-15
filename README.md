@@ -1,5 +1,7 @@
 TODO:
-Utilize database to show the articles.
+
+Readup on how data interacts on angualr?
+https://docs.angularjs.org/tutorial/step_04
 
 http://thejackalofjavascript.com/an-end-to-end-hybrid-app/
 
