@@ -40,7 +40,7 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
 
         console.log($scope.name);
 
-        PostFactory.create({ name: $scope.name, url: $scope.url, points: 0, tags: $scope.tags, tags2: $scope.tags2}).success(function (data) {
+        PostFactory.create({ name: $scope.name, url: $scope.url, points: 0, content: $scope.content, tags: $scope.tags, tags2: $scope.tags2}).success(function (data) {
             console.log("GOOD");
 
             $state.go('app.playlists');
@@ -142,7 +142,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
                 tags: data.results[i].tags,  tags2: data.results[i].tags2 });
 
         }
-        $scope.orderProp;
+        //$scope.orderProp ='-points';
 
     //    console.log(playlists.tags);
     })
@@ -168,21 +168,27 @@ app.controller('PlaylistCtrl', function($scope, $stateParams) {
 app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
   function($scope, PostFactory, $state) {
 
-  console.log($scope);
-  $scope.playlistsContent = [{name:'Entry 1'}];
+
 
     PostFactory.get($state.playlistId).success(function (data) {
 
 
-  console.log(data);
-
-              $scope.playlistsContent.push({name: data.name});
-
+      $scope.title = data.name;
+      $scope.content = data.content;
+      $scope.points = data.points;
 
     //    console.log(playlists.tags);
   })
-  console.log("Hi");
-  console.log($scope.playlistsContent);
+
+
+
+
+  //UPVOTE
+
+
+//  PostFactory.update($state.playlistId ,points).success(function (data) {
+
+//  })
 //  console.log($scope.$parent.playlistsContent);
 
 }]);

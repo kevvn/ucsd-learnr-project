@@ -6,19 +6,17 @@
  <div class="list card" ng-controller="PlaylistCtrl" >
 
   <div class="item ">
-    <h2>How to do the thing</h2>
+    <h2>{{title}}</h2>
   </div>
 
   <div class="item item-body">
     <p>
-      Step 1 Step 2 Step 3<br>TADA
-      <ion-item ng-repeat="name in playlistsContents">
-        {{playlistContent.name}} {{playlistsContent.content}}
-      </ion-item>
+      {{content}}
+
 
     </p>
     <p>
-      <a href="#" class="subdued">1 Like</a>
+      <a href="#" class="subdued">{{points}} Like</a>
       <a href="#" class="subdued">5 Comments</a>
     </p>
   </div>
