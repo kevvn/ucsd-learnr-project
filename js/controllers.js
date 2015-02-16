@@ -1,12 +1,9 @@
 var app = angular.module('starter.controllers', []);
 
 
-app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+app.controller('AppCtrl', function($scope, $ionicModal) {
   // Form data for the login modal
   $scope.loginData = {};
-
-
-
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -27,13 +24,10 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
+    $scope.loginData = {name: $scope.username, password: $scope.password};
     console.log('Doing login', $scope.loginData);
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+
   };
 
 
@@ -130,23 +124,11 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
 
 
 
-app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, PostFactory) {
-
-
-    /*$scope.playlists = [
-      { title: 'How to Cook', points: 10 },
-      { title: 'Another Tutorial', points: 2 },
-      { title: 'Tutorials on Tutorials', points: 3 },
-      { title: 'Have you wanted to learn about', points: 4 },
-      { title: 'Learn to rap', points: 5 },
-      { title: 'How to not make an app', points: 6 }
-    ];*/
+app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, PostFactory, $state) {
 
     $scope.playlists = [];
 
     PostFactory.getAll().success(function (data) {
-
-        console.log("QWERQERQWERQEWR");
 
 
         console.log(data.results.length);
@@ -156,23 +138,26 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
 
             //console.log("GHGH");
 
-
-
-
-            $scope.playlists.push({objectID: data.results[i].objectID, title: data.results[i].name, points: data.results[i].points,
+            $scope.playlists.push({objectId: data.results[i].objectId, title: data.results[i].name, points: data.results[i].points,
                 tags: data.results[i].tags,  tags2: data.results[i].tags2 });
 
         }
-        $scope.orderProp = '-points';
-        
+        $scope.orderProp;
 
     //    console.log(playlists.tags);
     })
 
+
+
+    $scope.reloadPage = function(){window.location.reload();}
+
+
+
+
 }])
 
 app.controller('PlaylistCtrl', function($scope, $stateParams) {
+  console.log($scope.playlistId);
+  $scope.playlistId = $stateParams.playlistId;
 
-
-
-})
+});

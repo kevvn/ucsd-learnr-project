@@ -91,7 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: "/playlists/:playlistScore",
+    url: "/playlists/:playlistId",
     views: {
       'menuContent': {
         templateUrl: "templates/playlist.html",
@@ -111,5 +111,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/404');
+  $urlRouterProvider.otherwise('/app/playlists');
 });
