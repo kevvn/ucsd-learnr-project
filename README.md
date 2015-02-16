@@ -1,5 +1,7 @@
 TODO:
 
+<img src ="http://i.stack.imgur.com/XMleR.png>
+
 Or this?!?!?
 https://docs.angularjs.org/tutorial/step_07
 
