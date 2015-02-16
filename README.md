@@ -1,5 +1,11 @@
 TODO:
 
+Or this?!?!?
+https://docs.angularjs.org/tutorial/step_07
+
+nested templates for content.
+http://angular-ui.github.io/ui-router/site/#/api/ui.router
+
 Readup on how data interacts on angualr?
 https://docs.angularjs.org/tutorial/step_04
 
