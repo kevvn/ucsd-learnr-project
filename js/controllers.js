@@ -166,29 +166,23 @@ app.controller('PlaylistCtrl', function($scope, $stateParams) {
 */
 
 app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
-  function($scope, PostFactory, $stateParams) {
+  function($scope, PostFactory, $state) {
 
-  console.log($stateParams.playlistId);
-  $scope.playlistsContent = [];
+  console.log($scope);
+  $scope.playlistsContent = [{name:'Entry 1'}];
 
-    PostFactory.getAll().success(function (data) {
+    PostFactory.get($state.playlistId).success(function (data) {
 
 
-        console.log(data.results.length);
+  console.log(data);
 
-        // push data into playlists array
-        for (var i = 0; i < data.results.length; i++) {
-
-            if($stateParams.playlistId == data.results[i].objectId){
-              console.log( data.results[i].objectId);
-              $scope.playlistsContent.push({title: data.results[i].name});
-              console.log($scope.playlistsContent.title);
-            }
-        }
+              $scope.playlistsContent.push({name: data.name});
 
 
     //    console.log(playlists.tags);
   })
-
+  console.log("Hi");
+  console.log($scope.playlistsContent);
+//  console.log($scope.$parent.playlistsContent);
 
 }]);
