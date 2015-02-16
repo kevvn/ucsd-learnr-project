@@ -19,7 +19,7 @@
 
         <div ng-controller="PlaylistsCtrl" class="list">
             <ion-list>
-                <ion-item ng-repeat="playlist in playlists | filter:query | orderBy:orderProp" href="#/app/playlists/{{playlist.title}}">
+                <ion-item ng-repeat="playlist in playlists | filter:query | orderBy:orderProp" href="#/app/playlists/{{playlist.objectId}}">
                    {{playlist.points}} {{playlist.title}}
                 </ion-item>
             </ion-list>

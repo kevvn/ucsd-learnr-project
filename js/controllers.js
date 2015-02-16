@@ -155,9 +155,40 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
 
 
 }])
-
+/*
 app.controller('PlaylistCtrl', function($scope, $stateParams) {
   console.log($scope.playlistId);
   $scope.playlistId = $stateParams.playlistId;
 
 });
+
+
+*/
+
+app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
+  function($scope, PostFactory, $stateParams) {
+
+  console.log($stateParams.playlistId);
+  $scope.playlistsContent = [];
+
+    PostFactory.getAll().success(function (data) {
+
+
+        console.log(data.results.length);
+
+        // push data into playlists array
+        for (var i = 0; i < data.results.length; i++) {
+
+            if($stateParams.playlistId == data.results[i].objectId){
+              console.log( data.results[i].objectId);
+              $scope.playlistsContent.push({title: data.results[i].name});
+              console.log($scope.playlistsContent.title);
+            }
+        }
+
+
+    //    console.log(playlists.tags);
+  })
+
+
+}]);
