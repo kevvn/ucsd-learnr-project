@@ -176,6 +176,7 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
       $scope.title = data.name;
       $scope.content = data.content;
       $scope.points = data.points;
+      $scope.url = data.url;
 
     //    console.log(playlists.tags);
   })
