@@ -105,7 +105,7 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
 
         console.log($scope.username);
 
-        Users.signup({ "username": $scope.username, password: $scope.password}).success(function (data) {
+        Users.signup({ username: $scope.username, password: $scope.password}).success(function (data) {
           console.log(data);
 
             $state.go('app.playlists');
