@@ -8,9 +8,7 @@
   <ion-content>
 
     <div ng-controller = "UserCtrl">
-
-
-    <form ng-submit="doLogin()">
+    <form ng-submit="doSignup()">
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Username</span>
@@ -20,14 +18,16 @@
           <span class="input-label">Password</span>
           <input type="password" ng-model="password">
         </label>
+
+
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
+          <button class="button button-block button-negative"type="submit">Sign up</button>
         </label>
-
-
       </div>
     </div>
     </form>
+
+
 
 
 

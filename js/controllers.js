@@ -2,7 +2,8 @@ var app = angular.module('starter.controllers', []);
 // Parse id and rest api key
 app.value('PARSE_CREDENTIALS', {
     APP_ID: 'qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH',
-    REST_API_KEY: 'QOnuKyBBU5eWfugZLIDHEoFMzMf6N8mmrZyqc6tR'
+    REST_API_KEY: 'QOnuKyBBU5eWfugZLIDHEoFMzMf6N8mmrZyqc6tR',
+    SESSION_TOKEN: 'pnktnjyb996sj4p156gjtp4im'
 })
 
 app.controller('AppCtrl', ['$scope','$state', function ($scope, $state, $ionicModal) {
@@ -100,12 +101,12 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
 
 
 
-    $scope.doLogin = function () {
+    $scope.doSignup = function () {
 
         console.log($scope.username);
 
         Users.signup({ "username": $scope.username, password: $scope.password}).success(function (data) {
-            console.log("GOOD");
+          console.log(data);
 
             $state.go('app.playlists');
 
@@ -114,6 +115,23 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
         console.log("SAVED!");
 
      }
+
+
+         $scope.doLogin = function () {
+
+             console.log($scope.username);
+             var currentUser = $scope.username;
+             var currentPass = $scope.password;
+             Users.login({ username: currentUser, password: currentPass}).success(function (data) {
+                 console.log(data);
+
+                 $state.go('app.playlists');
+
+             })
+
+             console.log("SAVED!");
+
+          }
 
 }])
 
@@ -129,6 +147,7 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
+
                     'Content-Type': 'application/json'
                 }
             });
@@ -137,10 +156,11 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
 
 
         login: function ( data) {
-            return $http.get('https://api.parse.com/1/login' + id, data, {
+            return $http.get('https://api.parse.com/1/login', data, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
+
                     'Content-Type': 'application/json'
                 }
             });
@@ -212,7 +232,7 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
     //    console.log(playlists.tags);
   })
   $scope.upvote = function () {
-    
+
     PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
     console.log(data);
 
