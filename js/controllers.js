@@ -143,7 +143,7 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
         // CRUD operations, access Parse database
         signup: function (data) {
 
-            return $http.post('https://api.parse.com//1/users', data, {
+            return $http.post('https://api.parse.com/1/users', data, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
