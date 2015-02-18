@@ -216,7 +216,7 @@ app.controller('PlaylistCtrl', function($scope, $stateParams) {
 
 */
 
-app.controller('PlaylistCtrl', ['$scope','PostFactory', '$state',
+app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParam',
   function($scope, PostFactory, $state) {
 
     console.log($scope);
