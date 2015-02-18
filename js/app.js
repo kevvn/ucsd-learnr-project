@@ -8,7 +8,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-      //Parse.initialize("qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH", "NCteUlF8BFnxNniGAi6JqxbxxL5hKcUXlR4uECnn");
+      Parse.initialize("qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH", "NCteUlF8BFnxNniGAi6JqxbxxL5hKcUXlR4uECnn");
       //Parse.initialize("8lI28e5lGH37hrHAcbLDVuLM9xXPWTrHCPG4rY8L", "JyA0uBxQrL4SLqZ6tdIT4CKY1og7PW7ryCquxy8m");
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -41,6 +41,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: "templates/help.html"
+      }
+    }
+  })
+
+  .state('app.login', {
+    url: "/login",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/login.html"
       }
     }
   })

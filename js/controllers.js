@@ -1,37 +1,16 @@
 var app = angular.module('starter.controllers', []);
-
-
-app.controller('AppCtrl', function($scope, $ionicModal) {
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    $scope.loginData = {name: $scope.username, password: $scope.password};
-    console.log('Doing login', $scope.loginData);
-
-
-  };
-
-
+// Parse id and rest api key
+app.value('PARSE_CREDENTIALS', {
+    APP_ID: 'qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH',
+    REST_API_KEY: 'QOnuKyBBU5eWfugZLIDHEoFMzMf6N8mmrZyqc6tR'
 })
+
+app.controller('AppCtrl', ['$scope','$state', function ($scope, $state, $ionicModal) {
+  // Form data for the login modal
+  $scope.sessionUser = Parse.User.current();
+
+
+}])
 
 
 app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope, PostFactory, $state) {
@@ -55,11 +34,7 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
 
 
 
-// Parse id and rest api key
-app.value('PARSE_CREDENTIALS', {
-    APP_ID: 'qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH',
-    REST_API_KEY: 'QOnuKyBBU5eWfugZLIDHEoFMzMf6N8mmrZyqc6tR'
-})
+
 
 
 app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDENTIALS) {
@@ -97,7 +72,7 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
         },
 
         update: function (id, data) {
-            return $http.put('https://api.parse.com/1/classes/PostFactory' + id, data, {
+            return $http.put('https://api.parse.com/1/classes/PostFactory/' + id, data, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
@@ -121,13 +96,69 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
 }])
 
 
+app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state) {
+
+
+
+    $scope.doLogin = function () {
+
+        console.log($scope.username);
+
+        Users.signup({ "username": $scope.username, password: $scope.password}).success(function (data) {
+            console.log("GOOD");
+
+            $state.go('app.playlists');
+
+        })
+
+        console.log("SAVED!");
+
+     }
+
+}])
+
+/* Log in stuff?  */
+app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDENTIALS) {
+
+    return {
+
+        // CRUD operations, access Parse database
+        signup: function (data) {
+
+            return $http.post('https://api.parse.com//1/users', data, {
+                headers: {
+                    'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
+                    'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
+                    'Content-Type': 'application/json'
+                }
+            });
+        },
+
+
+
+        login: function ( data) {
+            return $http.get('https://api.parse.com/1/login' + id, data, {
+                headers: {
+                    'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
+                    'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        },
+
+
+    }
+
+}])
+
 
 
 
 app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, PostFactory, $state) {
 
     $scope.playlists = [];
-
+    console.log($scope);
     PostFactory.getAll().success(function (data) {
 
 
@@ -168,7 +199,7 @@ app.controller('PlaylistCtrl', function($scope, $stateParams) {
 app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
   function($scope, PostFactory, $state) {
 
-
+    console.log($scope);
 
     PostFactory.get($state.playlistId).success(function (data) {
 
@@ -180,9 +211,13 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
 
     //    console.log(playlists.tags);
   })
+  $scope.upvote = function () {
+    
+    PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
+    console.log(data);
 
-
-
+  })
+}
 
   //UPVOTE
 
