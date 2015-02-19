@@ -6,9 +6,10 @@ app.value('PARSE_CREDENTIALS', {
     SESSION_TOKEN: 'pnktnjyb996sj4p156gjtp4im'
 })
 
-app.controller('AppCtrl', ['$scope','$state', function ($scope, $state, $ionicModal) {
+app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state, $ionicModal) {
   // Form data for the login modal
-  $scope.sessionUser = Parse.User.current();
+  var currentUser = Parse.User.current();
+   console.log(currentUser);
 
 
 }])
@@ -97,7 +98,7 @@ app.factory('PostFactory', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE
 }])
 
 
-app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state) {
+app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state, $ionic) {
 
 
 
@@ -105,16 +106,27 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
 
         console.log($scope.username);
 
-        Users.signup({ username: $scope.username, password: $scope.password}).success(function (data) {
-          console.log(data);
+        var user = new Parse.User();
+          user.set("username", $scope.username);
+          user.set("password", $scope.password);
+
+
+          user.signUp(null, {
+            success: function(user) {
+              // Hooray! Let them use the app now.
+            },
+            error: function(user, error) {
+              // Show the error message somewhere and let the user try again.
+              alert("Error: " + error.code + " " + error.message);
+            }
+            });
 
             $state.go('app.playlists');
 
-        })
+        }
 
-        console.log("SAVED!");
 
-     }
+
 
 
          $scope.doLogin = function () {
@@ -122,12 +134,20 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
              console.log($scope.username);
              var currentUser = $scope.username;
              var currentPass = $scope.password;
-             Users.login({ username: currentUser, password: currentPass}).success(function (data) {
-                 console.log(data);
 
+             Parse.User.logIn($scope.username, $scope.password, {
+               success: function(user) {
                  $state.go('app.playlists');
+               },
+               error: function(user, error) {
+    // The login failed. Check error to see why.
+    console.log(error);
+                }
+                }             );
 
-             })
+                // $state.go('app.playlists');
+
+
 
              console.log("SAVED!");
 
@@ -167,6 +187,18 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
 
         },
 
+        getUser: function ( data) {
+            return $http.get('https://api.parse.com/1/users/me', data, {
+                headers: {
+                    'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
+                    'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
+
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        },
+
 
     }
 
@@ -193,7 +225,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
                 tags: data.results[i].tags,  tags2: data.results[i].tags2 });
 
         }
-        //$scope.orderProp ='-points';
+        $scope.orderProp ='-points';
 
     //    console.log(playlists.tags);
     })
