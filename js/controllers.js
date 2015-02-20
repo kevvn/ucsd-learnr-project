@@ -294,7 +294,7 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
     //    console.log(playlists.tags);
   })
   $scope.favorite = function() {
-    if(currentUser){
+    if($scope.currentLoggedin){
 
     }
     else{
@@ -304,7 +304,7 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
 
   }
   $scope.upvote = function () {
-    if(currentUser){
+    if($scope.currentLoggedin){
       PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
         console.log(data);
 
