@@ -188,7 +188,14 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
 
         // CRUD operations, access Parse database
 
-
+        get: function (id) {
+            return $http.get('https://api.parse.com/1/classes/favorite/' + id, {
+                headers: {
+                    'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
+                    'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
+                }
+            });
+        },
         update: function (id, data) {
             return $http.put('https://api.parse.com/1/classes/favorite' + id, data, {
                 headers: {
@@ -234,7 +241,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
                 tags: data.results[i].tags,  tags2: data.results[i].tags2 });
 
         }
-
+        console.log($scope);
     //    console.log(playlists.tags);
     })
 
@@ -306,10 +313,15 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
 
 
 
-app.controller('FavoriteCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
-  function($scope, PostFactory,Users, $state) {
-  console.log($state.userId);
+app.controller('FavoriteCtrl', ['$rootScope', '$scope','PostFactory', 'Users', '$stateParams',
+  function($rootScope, $scope, PostFactory,Users, $state) {
+
   var current = $state.userId;
+  var object = [];
+  var ids =[];
+  var i = 0;
+  $rootScope.favoriteId = [];
+
     var favorite = Parse.Object.extend("favorite");
     var query = new Parse.Query(favorite);
 
@@ -317,19 +329,34 @@ app.controller('FavoriteCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
 
     query.find({
       success: function(results) {
-        alert("Successfully retrieved " + results.length + " scores.");
+    //    console.log(results);
+
     // Do something with the returned Parse.Object values
-      for (var i = 0; i < results.length; i++) {
-        var object = results[i];
-        alert(object.id + ' - ' + object.get($state.userId));
+      for (i = 0; i < results.length; i++) {
+
+         object[i] = results[i];
+         ids[i] = object[i].attributes.favorite;
+
       }
+      while(i>0){
+        i--;
+        PostFactory.get(ids[i]).success(function (data) {
+
+        $rootScope.favoriteId.push({objectId: data.objectId, title: data.name, points: data.points});
+      })
+
+      }
+
     },
     error: function(error) {
       alert("Error: " + error.code + " " + error.message);
     }
-  });
-    console.log(query);
 
+
+
+  });
+
+  console.log($rootScope);
 
 
 }]);

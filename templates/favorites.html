@@ -5,7 +5,11 @@
 
     <div>
         <ion-list>
-
+          <ion-list>
+              <ion-item ng-repeat="favoriteId in favoriteId" href="#/app/playlists/{{favoriteId.objectId}}">
+                 {{favoriteId.points}} {{favoriteId.title}}
+              </ion-item>
+          </ion-list>
 
 
         </ion-list>
