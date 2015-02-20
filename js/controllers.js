@@ -10,7 +10,7 @@ app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users,
   // Form data for the login modal
   var currentUser = Parse.User.current();
 //  console.log(currentUser);
-  var userObject = currentUser.id;
+  //var userObject = currentUser.id;
   if(currentUser){
 
     Parse.User.become(currentUser._sessionToken).then(function (user) {
