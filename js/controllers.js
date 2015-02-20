@@ -12,7 +12,7 @@ app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users,
 //  console.log(currentUser);
   //var userObject = currentUser.id;
   if(currentUser){
-
+    var userObject = currentUser.id;
     Parse.User.become(currentUser._sessionToken).then(function (user) {
     $scope.currentLoggedin = currentUser.attributes.username;
 
