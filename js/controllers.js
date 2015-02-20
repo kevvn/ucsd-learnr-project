@@ -9,7 +9,7 @@ app.value('PARSE_CREDENTIALS', {
 app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state, $ionicModal) {
   // Form data for the login modal
   var currentUser = Parse.User.current();
-  console.log(currentUser.id);
+  //console.log(currentUser.id);
   //var userObject = currentUser.id;
   if(currentUser){
     var userObject = currentUser.id;
@@ -33,7 +33,7 @@ app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users,
 
    $scope.logout = function(){
      Parse.User.logOut();
-
+     $scope.reloadPage = function(){window.location.reload()};
      var currentUser = Parse.User.current();
    }
 
