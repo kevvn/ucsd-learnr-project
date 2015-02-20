@@ -15,7 +15,7 @@ app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users,
 
     Parse.User.become(currentUser._sessionToken).then(function (user) {
     $scope.currentLoggedin = currentUser.attributes.username;
-    var Favorites = new Parse.Users.Object("Favorites");
+
     }, function (error) {
   // The token could not be validated.
       alert("Could not validate Token");
@@ -236,7 +236,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
     $scope.playlists = [];
     $scope.$watch("orderProp", function(newValue, oldValue) {
     if ($scope.orderProp) {
-        
+
     }
     else{
       $scope.orderProp = '-points';
