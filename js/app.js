@@ -112,11 +112,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.favorites', {
-    url: "/favorites",
+    url: "/favorites/:userId",
     views: {
       'menuContent': {
         templateUrl: "templates/favorites.html",
-
+        controller: 'FavoriteCtrl'
       }
     }
   });

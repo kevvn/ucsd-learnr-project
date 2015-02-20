@@ -9,20 +9,21 @@ app.value('PARSE_CREDENTIALS', {
 app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state, $ionicModal) {
   // Form data for the login modal
   var currentUser = Parse.User.current();
-//  console.log(currentUser);
+  console.log(currentUser.id);
   //var userObject = currentUser.id;
   if(currentUser){
     var userObject = currentUser.id;
+
     Parse.User.become(currentUser._sessionToken).then(function (user) {
-    $scope.currentLoggedin = currentUser.attributes.username;
+    $scope.currentLoggedin = currentUser;
 
     }, function (error) {
   // The token could not be validated.
       alert("Could not validate Token");
     });
 
-    console.log(currentUser.attributes.username);
-    console.log($scope);
+  //  console.log(currentUser.attributes.username);
+//    console.log($scope);
   }else{
 
     console.log("NO USErS");
@@ -162,6 +163,7 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
 
              Parse.User.logIn($scope.username, $scope.password, {
                success: function(user) {
+
                  $state.go('app.playlists');
                },
                error: function(user, error) {
@@ -185,43 +187,19 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
     return {
 
         // CRUD operations, access Parse database
-        signup: function (data) {
 
-            return $http.post('https://api.parse.com/1/users', data, {
+
+        update: function (id, data) {
+            return $http.put('https://api.parse.com/1/classes/favorite' + id, data, {
                 headers: {
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
-
-                    'Content-Type': 'application/json'
-                }
-            });
-        },
-
-
-
-        login: function ( data) {
-            return $http.get('https://api.parse.com/1/login', data, {
-                headers: {
-                    'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                    'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
-
                     'Content-Type': 'application/json'
                 }
             });
 
         },
 
-        getUser: function ( data) {
-            return $http.get('https://api.parse.com/1/users/me', data, {
-                headers: {
-                    'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                    'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
-
-                    'Content-Type': 'application/json'
-                }
-            });
-
-        },
 
 
     }
@@ -268,15 +246,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
 
 
 }])
-/*
-app.controller('PlaylistCtrl', function($scope, $stateParams) {
-  console.log($scope.playlistId);
-  $scope.playlistId = $stateParams.playlistId;
 
-});
-
-
-*/
 
 app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
   function($scope, PostFactory,Users, $state) {
@@ -291,10 +261,17 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
       $scope.points = data.points;
       $scope.url = data.url;
 
-    //    console.log(playlists.tags);
   })
+
   $scope.favorite = function() {
     if($scope.currentLoggedin){
+      console.log($scope.currentLoggedin.id );
+
+      var favorite = Parse.Object.extend("favorite");
+      var privateNote = new favorite();
+      privateNote.set("favorite", $state.playlistId);
+      privateNote.set("content", $scope.currentLoggedin.id );
+      privateNote.save();
 
     }
     else{
@@ -314,17 +291,45 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
 
       alert("Please log in to favorite articles");
     }
+  }
+    $scope.report = function () {
+      if($scope.currentLoggedin){
+        alert("This article has been reported");
+      }
+      else{
+
+        alert("Please log in to report articles");
+      }
+    }
+
+}]);
 
 
 
-}
+app.controller('FavoriteCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
+  function($scope, PostFactory,Users, $state) {
+  console.log($state.userId);
+  var current = $state.userId;
+    var favorite = Parse.Object.extend("favorite");
+    var query = new Parse.Query(favorite);
 
-  //UPVOTE
+    query.equalTo("content", current);
+
+    query.find({
+      success: function(results) {
+        alert("Successfully retrieved " + results.length + " scores.");
+    // Do something with the returned Parse.Object values
+      for (var i = 0; i < results.length; i++) {
+        var object = results[i];
+        alert(object.id + ' - ' + object.get($state.userId));
+      }
+    },
+    error: function(error) {
+      alert("Error: " + error.code + " " + error.message);
+    }
+  });
+    console.log(query);
 
 
-//  PostFactory.update($state.playlistId ,points).success(function (data) {
-
-//  })
-//  console.log($scope.$parent.playlistsContent);
 
 }]);
