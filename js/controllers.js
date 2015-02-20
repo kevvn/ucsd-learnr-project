@@ -12,7 +12,15 @@ app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users,
 //  console.log(currentUser);
   var userObject = currentUser.id;
   if(currentUser){
+
+    Parse.User.become(currentUser._sessionToken).then(function (user) {
     $scope.currentLoggedin = currentUser.attributes.username;
+    var Favorites = new Parse.Users.Object("Favorites");
+    }, function (error) {
+  // The token could not be validated.
+      alert("Could not validate Token");
+    });
+
     console.log(currentUser.attributes.username);
     console.log($scope);
   }else{
@@ -226,7 +234,14 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
 app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, PostFactory, $state) {
 
     $scope.playlists = [];
-  //  $scope.orderProp ='-points';
+    $scope.$watch("orderProp", function(newValue, oldValue) {
+    if ($scope.orderProp) {
+        
+    }
+    else{
+      $scope.orderProp = '-points';
+    }
+  });
     PostFactory.getAll().success(function (data) {
 
 
@@ -283,14 +298,26 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
     if(currentUser){
 
     }
+    else{
+
+      alert("Please log in to favorite articles");
+    }
 
   }
   $scope.upvote = function () {
+    if(currentUser){
+      PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
+        console.log(data);
 
-    PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
-    console.log(data);
+      })
+    }
+    else{
 
-  })
+      alert("Please log in to favorite articles");
+    }
+
+
+
 }
 
   //UPVOTE
