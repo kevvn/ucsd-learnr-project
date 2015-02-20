@@ -10,14 +10,27 @@
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="text" placeholder="Search for learning resources!" ng-model="query">
             </label>
-        </div>
+       
 
-        <select ng-model="orderProp">
+
+  <label class="item item-input item-select">
+
+    <div class="input-label">
+    Sort by 
+    </div>
+    <select ng-model="orderProp">
           <option value="title">Alphabetical</option>
           <option value="-points" >Score</option>
         </select>
+  </label>
+</div>
 
-        <div ng-controller="PlaylistsCtrl" class="list">
+        <!--<select ng-model="orderProp">
+          <option value="title">Alphabetical</option>
+          <option value="-points" >Score</option>
+        </select>-->
+
+        <div ng-controller="PlaylistsCtrl" class="list list-inset">
             <ion-list>
                 <ion-item ng-repeat="playlist in playlists | filter:query | orderBy:orderProp" href="#/app/playlists/{{playlist.objectId}}">
                    {{playlist.points}} {{playlist.title}}

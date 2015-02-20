@@ -225,7 +225,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
                 tags: data.results[i].tags,  tags2: data.results[i].tags2 });
 
         }
-        $scope.orderProp ='-points';
+      //  $scope.orderProp ='-points';
 
     //    console.log(playlists.tags);
     })

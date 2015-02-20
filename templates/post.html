@@ -5,24 +5,32 @@
     <div ng-controller="PostCtrl">
         <form ng-submit="newPost()">
 
-          <div class="list">
-          <label class="item item-input item-floating-label">
-            <span class="input-label">Title of Post</span>
+     <div class="card"> 
+     <div class="item item-divider">
+   Create Post
+  </div>     
+        <label class ="item item-input">
+            <span class="input-label"> Title of Post </span>
+            <input type="text" ng-model="name" placeholder="what will appear to users">
+        </label>
 
-            <input type="text" ng-model="name" placeholder="Title of Post">
+        <label class ="item item-input">
+            <span class="input-label">URL  </span>
+            <input type="text" ng-model="url" placeholder="please attach a valid link">
           </label>
 
-          <label class="item item-input item-floating-label">
-            <span class="input-label">URL</span>
-
-            <input type="text" ng-model="url" placeholder="URL">
+         <label class ="item item-input">
+            <span class="input-label"> Article Content </span>
+                 <input type="text" ng-model="content" placeholder="copy and paste" >
           </label>
 
-          <label class="item item-input item-floating-label">
+
+
+        <!--  <label class="item item-input item-floating-label">
             <span class="input-label" > Article Content</span>
 
             <input type="text" ng-model="content" placeholder="Article Content" >
-          </label>
+          </label>-->
 
 
           <label class="item item-input item-select">
@@ -56,7 +64,7 @@
 
 
 
-                <button type="submit" class="button button-positive button-block" ><a href="/#/app/playlists">Post </a></button>
+                <button type="submit" class="button button-block button-positive" href="#/app/playlists">Submit</button>
               </div>
         </form>
     </div>
@@ -109,28 +117,7 @@
 
 
 
-    <!--	<label class ="item item-input">
-
-    		<span class="input-label"> Article Title</span>
-    		<input type="text">
-    	</label>
-    	<label class ="item item-input">
-
-    		<span class="input-label"> URL</span>
-    		<input type="text">
-    	</label>
-    	<label class ="item item-input">
-
-    		<span class="input-label"> Description</span>
-    		<input type="text">
-    	</label>
-    	<label class ="item item-input">
-
-    		<span class="input-label"> Tags</span>
-    		<input type="text">
-    	</label>
-    	<a href="#/app"><button> Submit</button></a>
-    -->
+   
 
 
   </ion-content>
