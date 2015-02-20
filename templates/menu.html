@@ -39,7 +39,7 @@
 
 
         <ion-item nav-clear menu-close href="#/app/login">
-         <i class="icon ion-home">
+         <i class="ion-information-circled">
           Login
          </i>
         </ion-item>
@@ -50,12 +50,18 @@
          </i>
         </ion-item>
 
+        <ion-item nav-clear menu-close ng-click="logout()">
+
+          Logout
+
+        </ion-item>
+
         <ion-item nav-clear menu-close href="#/app/favorites">
         <i class="icon ion-star">
           My Favorites
         </i>
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/search"> 
+        <ion-item nav-clear menu-close href="#/app/search">
         <i class="icon ion-gear-a">
           Account Info
         </i>

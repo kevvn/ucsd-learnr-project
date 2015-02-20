@@ -17,7 +17,6 @@
     </p>
     <p>
       <a href="#" class="subdued">{{points}} Like</a>
-      <a href="#" class="subdued">5 Comments</a>
       <a href="{{url}}" class="subdued">Source article</a>
     </p>
   </div>
@@ -27,9 +26,13 @@
       <i class="icon ion-thumbsup"></i>
       Upvote
     </a>
-    <a class="tab-item" href="#">
-      <i class="icon ion-chatbox"></i>
-      Comment
+    <a class="tab-item">
+      <i class="icon ion-heart"></i>
+      Favorite
+    </a>
+    <a class="tab-item" ng-click="report()">
+      <i class="icon ion-sad"></i>
+      Report
     </a>
 
   </div>
