@@ -256,11 +256,6 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
                 tags: data.results[i].tags,  tags2: data.results[i].tags2 });
 
         }
-<<<<<<< HEAD
-      //  $scope.orderProp ='-points';
-=======
-  //  $scope.orderProp ='-points';
->>>>>>> 1042ad069b8b11b8e2570d45ea7f201f499bb088
 
     //    console.log(playlists.tags);
     })
