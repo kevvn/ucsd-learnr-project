@@ -9,8 +9,32 @@ app.value('PARSE_CREDENTIALS', {
 app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state, $ionicModal) {
   // Form data for the login modal
   var currentUser = Parse.User.current();
-   console.log(currentUser);
+//  console.log(currentUser);
+  var userObject = currentUser.id;
+  if(currentUser){
 
+    Parse.User.become(currentUser._sessionToken).then(function (user) {
+    $scope.currentLoggedin = currentUser.attributes.username;
+    var Favorites = new Parse.Users.Object("Favorites");
+    }, function (error) {
+  // The token could not be validated.
+      alert("Could not validate Token");
+    });
+
+    console.log(currentUser.attributes.username);
+    console.log($scope);
+  }else{
+
+    console.log("NO USErS");
+  }
+
+
+
+   $scope.logout = function(){
+     Parse.User.logOut();
+
+     var currentUser = Parse.User.current();
+   }
 
 }])
 
@@ -23,7 +47,7 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
 
         PostFactory.create({ name: $scope.name, url: $scope.url, points: 0, content: $scope.content, tags: $scope.tags, tags2: $scope.tags2}).success(function (data) {
             console.log("GOOD");
-
+            alert("Post successful");
             $state.go('app.playlists');
 
         })
@@ -114,14 +138,15 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
           user.signUp(null, {
             success: function(user) {
               // Hooray! Let them use the app now.
+
+              $state.go('app.playlists');
+
             },
             error: function(user, error) {
               // Show the error message somewhere and let the user try again.
               alert("Error: " + error.code + " " + error.message);
             }
             });
-
-            $state.go('app.playlists');
 
         }
 
@@ -140,16 +165,15 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
                  $state.go('app.playlists');
                },
                error: function(user, error) {
-    // The login failed. Check error to see why.
+               if(error.code == 101){
+                 alert(error.message);
+
+               }
     console.log(error);
                 }
                 }             );
 
-                // $state.go('app.playlists');
 
-
-
-             console.log("SAVED!");
 
           }
 
@@ -210,7 +234,14 @@ app.factory('Users', ['$http', 'PARSE_CREDENTIALS', function ($http, PARSE_CREDE
 app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, PostFactory, $state) {
 
     $scope.playlists = [];
-    console.log($scope);
+    $scope.$watch("orderProp", function(newValue, oldValue) {
+    if ($scope.orderProp) {
+        
+    }
+    else{
+      $scope.orderProp = '-points';
+    }
+  });
     PostFactory.getAll().success(function (data) {
 
 
@@ -225,7 +256,11 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function ($scope, Post
                 tags: data.results[i].tags,  tags2: data.results[i].tags2 });
 
         }
+<<<<<<< HEAD
       //  $scope.orderProp ='-points';
+=======
+  //  $scope.orderProp ='-points';
+>>>>>>> 1042ad069b8b11b8e2570d45ea7f201f499bb088
 
     //    console.log(playlists.tags);
     })
@@ -248,8 +283,8 @@ app.controller('PlaylistCtrl', function($scope, $stateParams) {
 
 */
 
-app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
-  function($scope, PostFactory, $state) {
+app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
+  function($scope, PostFactory,Users, $state) {
 
     console.log($scope);
 
@@ -263,12 +298,30 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', '$stateParams',
 
     //    console.log(playlists.tags);
   })
+  $scope.favorite = function() {
+    if(currentUser){
+
+    }
+    else{
+
+      alert("Please log in to favorite articles");
+    }
+
+  }
   $scope.upvote = function () {
+    if(currentUser){
+      PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
+        console.log(data);
 
-    PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
-    console.log(data);
+      })
+    }
+    else{
 
-  })
+      alert("Please log in to favorite articles");
+    }
+
+
+
 }
 
   //UPVOTE
