@@ -7,34 +7,55 @@ app.value('PARSE_CREDENTIALS', {
 })
 
 app.controller('AppCtrl', ['$scope', 'Users', '$state', function ($scope, Users, $state, $ionicModal) {
-  // Form data for the login modal
-  var currentUser = Parse.User.current();
-  //console.log(currentUser.id);
-  //var userObject = currentUser.id;
-  if(currentUser){
-    var userObject = currentUser.id;
 
-    Parse.User.become(currentUser._sessionToken).then(function (user) {
-    $scope.currentLoggedin = currentUser;
 
-    }, function (error) {
-  // The token could not be validated.
-      alert("Could not validate Token");
-    });
 
-  //  console.log(currentUser.attributes.username);
-//    console.log($scope);
-  }else{
 
-    console.log("NO USErS");
+
+
+
+  $scope.post = function () {
+
+
+      // Form data for the login modal
+      var currentUser = Parse.User.current();
+      //console.log(currentUser.id);
+      //var userObject = currentUser.id;
+      if (currentUser) {
+          var userObject = currentUser.id;
+
+          Parse.User.become(currentUser._sessionToken).then(function (user) {
+              $scope.currentLoggedin = currentUser;
+
+          }, function (error) {
+              // The token could not be validated.
+              alert("Could not validate Token");
+          });
+
+
+          $state.go('app.post');
+
+          //  console.log(currentUser.attributes.username);
+          //    console.log($scope);
+      } else {
+
+          console.log("NO USErS");
+
+          // bring up login page
+          $state.go('app.login');
+
+      }
+
   }
-
 
 
    $scope.logout = function(){
      Parse.User.logOut();
      $scope.reloadPage = function(){window.location.reload()};
      var currentUser = Parse.User.current();
+
+     console.log("LOGGED OUT");
+
    }
 
 }])
@@ -288,11 +309,21 @@ app.controller('PlaylistCtrl', ['$scope','PostFactory', 'Users', '$stateParams',
 
   }
   $scope.upvote = function () {
-    if($scope.currentLoggedin){
-      PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
-        console.log(data);
+      if ($scope.currentLoggedin) {
 
-      })
+          // haven't upvoted before
+            
+              PostFactory.update($state.playlistId ,{points: $scope.points+1}).success(function (data){
+                console.log(data);
+
+              })
+
+
+          // upvoted before
+
+
+
+
     }
     else{
 
