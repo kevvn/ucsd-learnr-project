@@ -1,21 +1,21 @@
 TODO:
 Current Heuristics Eval Todo
 
-home button not easily accessible?
-sounds and brightness not necessary
-done button covered
-copyright 2015 is covering the page
-sign up page, post button there, confusing?
-checking for invalid link
-numbers as icons?
-negative downvote?
-refresh should be asynchronous
-report button—> make sure you have feedback...report is easily clickable on acciden
-visibility—> are you logged in or not? 
-upvote —> only let user favorite once
-edit-->be able to edit post
-click into article-->once you click into article, swipe left to go back 
-signup--> pw confirmation
+home button not easily accessible?<br>
+sounds and brightness not necessary<br>
+done button covered<br>
+copyright 2015 is covering the page<br>
+sign up page, post button there, confusing?<br>
+checking for invalid link<br>
+numbers as icons?<br>
+negative downvote?<br>
+refresh should be asynchronous<br>
+report button—> make sure you have feedback...report is easily clickable on acciden<br>
+visibility—> are you logged in or not? <br>
+upvote —> only let user favorite once<br>
+edit-->be able to edit post<br>
+click into article-->once you click into article, swipe left to go back <br>
+signup--> pw confirmation<br>
 
 
 
