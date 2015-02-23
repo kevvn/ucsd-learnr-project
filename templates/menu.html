@@ -11,12 +11,12 @@
 
             <!-- Login Button -->
             <ion-nav-buttons side="right">
-                <a href="#/app/login"><button class="button button-clear button-positive" id="loginButton">Login</button></a>
-            </ion-nav-buttons>
+                <a href="#/app/login"><button class="button button-clear button-calm" id="loginButton"><b>Login</b></button></a>
+            
             
             <!-- Post Button -->
-            <ion-nav-buttons side="right">
-                <button class="button button-balanced" ng-click="post()"><i class="icon ion-compose"></i>Post</button>
+            
+                <button class="button button-balanced" ng-click="post()" id="postButton"><i class="icon ion-compose"></i><b>Post</b></button>
             </ion-nav-buttons>
 
         </ion-nav-bar>
@@ -44,9 +44,9 @@
                     <i class="icon ion-home">Home</i>
                 </ion-item>
 
-                <ion-item nav-clear menu-close  href="#/app/login">
+                <!--<ion-item nav-clear menu-close  href="#/app/login">
                  <i class="ion-information-circled">Login</i>
-                </ion-item>
+                </ion-item>-->
 
                 <ion-item nav-clear menu-close  href="#/app/signup">
                     <i class="icon ion-arrow-up-c">Sign Up</i>

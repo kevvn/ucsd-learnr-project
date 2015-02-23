@@ -51,7 +51,7 @@
             <ion-list>
                 <ion-item ng-repeat="playlist in playlists | filter:query | orderBy:orderProp" href="#/app/playlists/{{playlist.objectId}}">
 
-                    <button class="entry"><i class="icon ion-arrow-up-b"></i><br />{{playlist.points}}</button>
+                    <button id="pointsButton"><i class="icon ion-arrow-up-b"></i><br />{{playlist.points}}</button>
                     
                     
                     <div class="entry">{{playlist.title}}</div>

@@ -9,13 +9,24 @@ input[type="search"]::-webkit-search-cancel-button {
 
 }
 
-.button {
-    display: inline;
+
+
+#loginButton {
+    margin: 0px 50px 0px 50px;
+    
 }
 
 
+#postButton {
+    margin: 0px 100px 0px 0px;
+    width: 80px;
+}
 
-
+#pointsButton {
+    margin: 0px 30px 0px 0px;
+    width: 30px;
+    height: 60px;
+}
 
 h1 {
 
@@ -40,10 +51,7 @@ h1 {
     padding-left: 30px;
 }
 
-/*
-.ion-list{
-	background-color: black;	
-}*/
+
 
 
 .helpsection-h2 { 
@@ -67,10 +75,11 @@ h1 {
     display: inline-block;
 }
 
-ion-item:hover {
-    
-    background-color: cadetblue;
-    /*background-color: #99CC99;*/
-    border-color: red;
+ion-item.item {
+    border: none;
+}
+
+ion-item.item:hover a {
+    background-color: #99CC99;
 }
 
