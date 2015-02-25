@@ -1,18 +1,20 @@
 <ion-view view-title="My Favorites">
   <ion-content>
-    <h1 >Welcome {{currentLoggedin.attributes.username}} {{login.name}}</h1>
+    <h1>Welcome {{currentLoggedin.attributes.username}} {{login.name}}</h1>
     <h2>Here are your current favorites {{login.message}}</h2>
 
     <div>
+      <ion-list>
         <ion-list>
-          <ion-list>
-              <ion-item ng-repeat="favoriteId in favoriteId" href="#/app/playlists/{{favoriteId.objectId}}">
-                 {{favoriteId.points}} {{favoriteId.title}}
-              </ion-item>
-          </ion-list>
+          <ion-item can-swipe="listCanSwipe" ng-repeat="favoriteId in favoriteId" href="#/app/playlists/{{favoriteId.objectId}}">
+            {{favoriteId.points}} {{favoriteId.title}}
+            <ion-option-button class="button" ng-click="trash(favoriteId.Id)">Trash</ion-option-button>
 
-
+          </ion-item>
         </ion-list>
+
+
+      </ion-list>
     </div>
   </ion-content>
 
