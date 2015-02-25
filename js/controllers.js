@@ -51,10 +51,13 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
             Parse.User.logIn(username,password, {
                 success: function (user) {
                   console.log("SUCCESS");
-                    $state.go('app.playlists');
+                    $scope.closeModal();
+                    $scope.logged = true;
+                    $scope.notlogged = true;
+                  //  $state.go('app.playlists');
                 },
                 error: function (user, error) {
-                    if (error.code == 101) {
+                    if (error.code) {
                         alert(error.message);
 
                     }
@@ -138,6 +141,8 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
 
         $scope.logout = function () {
             Parse.User.logOut();
+            $scope.logged = false;
+            $scope.notlogged = false;
             $scope.reloadPage = function () { window.location.reload() };
             var currentUser = Parse.User.current();
 

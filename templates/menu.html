@@ -12,10 +12,10 @@
             <ion-nav-buttons side="right">
 
                 <!-- Login Button -->
-                <button class="button button-clear button-calm" id="loginButton" ng-click="openModal()"><b>Login</b></button>
-            
+                <button class="button button-clear button-calm" ng-hide="notlogged" id="loginButton" ng-click="openModal()"><b>Login</b></button>
+
                 <!-- Post Button -->
-                <button class="button button-balanced" ng-click="post()" id="postButton"><i class="icon ion-compose"></i><b>Post</b></button>
+                <button class="button button-balanced" ng-show = "logged" ng-click="post()" id="postButton"><i class="icon ion-compose"></i><b>Post</b></button>
             </ion-nav-buttons>
 
         </ion-nav-bar>
@@ -47,17 +47,17 @@
                  <i class="ion-information-circled">Login</i>
                 </ion-item>-->
 
-                <ion-item nav-clear menu-close  href="#/app/signup">
+                <ion-item nav-clear menu-close ng-hide = "notlogged" href="#/app/signup">
                     <i class="icon ion-arrow-up-c">Sign Up</i>
                 </ion-item>
 
-                <ion-item nav-clear menu-close ng-click="logout()">Logout</ion-item>
+                <ion-item nav-clear menu-close ng-show = "logged" ng-click="logout()">Logout</ion-item>
 
-                <ion-item nav-clear menu-close href="#/app/favorites/{{currentLoggedin.id}}">
+                <ion-item nav-clear menu-close ng-show = "notlogged" href="#/app/favorites/{{currentLoggedin.id}}">
                     <i class="icon ion-heart">My Favorites</i>
                 </ion-item>
 
-                <ion-item nav-clear menu-close href="#/app/search">
+                <ion-item nav-clear menu-close ng-show = "notlogged" href="#/app/search">
                     <i class="icon ion-gear-a">Account Info</i>
                 </ion-item>
 
