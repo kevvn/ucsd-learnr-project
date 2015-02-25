@@ -12,13 +12,13 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
 #loginButton {
-    margin: 0px 50px 0px 50px;
+    /*margin: 0px 50px 0px 50px;*/
     
 }
 
 
 #postButton {
-    margin: 0px 100px 0px 0px;
+    /*margin: 0px 100px 0px 0px;*/
     width: 80px;
 }
 
@@ -76,7 +76,7 @@ h1 {
 }
 
 ion-item.item {
-    border: none;
+    /*border: none;*/
 }
 
 ion-item.item:hover a {

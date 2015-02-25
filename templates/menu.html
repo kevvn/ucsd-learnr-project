@@ -9,13 +9,12 @@
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 	        </ion-nav-buttons>
 
-            <!-- Login Button -->
             <ion-nav-buttons side="right">
-                <a href="#/app/login"><button class="button button-clear button-calm" id="loginButton"><b>Login</b></button></a>
+
+                <!-- Login Button -->
+                <button class="button button-clear button-calm" id="loginButton" ng-click="openModal()"><b>Login</b></button>
             
-            
-            <!-- Post Button -->
-            
+                <!-- Post Button -->
                 <button class="button button-balanced" ng-click="post()" id="postButton"><i class="icon ion-compose"></i><b>Post</b></button>
             </ion-nav-buttons>
 
