@@ -13,7 +13,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
     //  var currentPass = $scope.password;
 
       var currentUser = Parse.User.current();
-      console.log(currentUser.id);
+    //  console.log(currentUser.id);
       //var userObject = currentUser.id;
       if (currentUser) {
           var userObject = currentUser.id;
@@ -31,7 +31,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
           console.log("NO USErS");
 
           // bring up login page
-          $state.go('app.login');
+          //$state.go('app.login');
 
       }
 
@@ -81,6 +81,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
                     $scope.closeModal();
                     $scope.logged = true;
                     $scope.notlogged = true;
+                    window.location.reload();
                   //  $state.go('app.playlists');
                 },
                 error: function (user, error) {
@@ -170,9 +171,9 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
             Parse.User.logOut();
             $scope.logged = false;
             $scope.notlogged = false;
-            $scope.reloadPage = function () { window.location.reload() };
+            window.location.reload();
             var currentUser = Parse.User.current();
-
+         //   window.location.reload();
             console.log("LOGGED OUT");
 
         }
@@ -181,6 +182,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
 
 
 app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope, PostFactory, $state) {
+
 
     $scope.newPost = function () {
 
@@ -271,6 +273,8 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
     $scope.doSignup = function () {
 
         console.log($scope.username);
+        var name = $scope.username;
+        var pass = $scope.password;
 
         var user = new Parse.User();
         user.set("username", $scope.username);
@@ -280,8 +284,29 @@ app.controller('UserCtrl', ['$scope', 'Users', '$state', function ($scope, Users
         user.signUp(null, {
             success: function (user) {
                 // Hooray! Let them use the app now.
+                // Lets them log in
+                var currentUser = Parse.User.current();
+                Parse.User.logIn(name,pass, {
+                    success: function (user) {
+                      console.log("SUCCESS");
 
-                $state.go('app.playlists');
+
+                      $state.go('app.playlists');
+                      console.log($state);
+
+                      window.location.reload();
+                      //  $state.go('app.playlists');
+                    },
+                    error: function (user, error) {
+                        if (error.code) {
+                            alert(error.message);
+
+                        }
+                        console.log(error);
+                    }
+                });
+
+                //$state.go('app.playlists');
 
             },
             error: function (user, error) {

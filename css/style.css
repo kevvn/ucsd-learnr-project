@@ -4,16 +4,22 @@ input[type="search"]::-webkit-search-cancel-button {
 
   /* Remove default */
   -webkit-appearance: none;
-    
-  
+
+
 
 }
 
+.css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
 
+  .css-form input.ng-valid.ng-touched {
+    background-color: #78FA89;
+  }
 
 #loginButton {
     /*margin: 0px 50px 0px 50px;*/
-    
+
 }
 
 
@@ -42,7 +48,7 @@ h1 {
 
 .pane{
 	background-color:#EDFDF4;
-	
+
 }
 
 
@@ -54,8 +60,8 @@ h1 {
 
 
 
-.helpsection-h2 { 
-    color: blue; 
+.helpsection-h2 {
+    color: blue;
 }
 
 
@@ -82,4 +88,3 @@ ion-item.item {
 ion-item.item:hover a {
     background-color: #99CC99;
 }
-
