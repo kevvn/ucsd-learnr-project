@@ -9,8 +9,35 @@ app.value('PARSE_CREDENTIALS', {
 app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicModal',
     function ($scope, $rootScope, Users, $state, $ionicModal) {
 
-      var currentUser = $scope.username;
-      var currentPass = $scope.password;
+    //  var currentUser = $scope.username;
+    //  var currentPass = $scope.password;
+
+      var currentUser = Parse.User.current();
+      console.log(currentUser.id);
+      //var userObject = currentUser.id;
+      if (currentUser) {
+          var userObject = currentUser.id;
+          $scope.logged = true;
+          $scope.notlogged = true;
+          Parse.User.become(currentUser._sessionToken).then(function (user) {
+              $scope.currentLoggedin = currentUser;
+
+          }, function (error) {
+              // The token could not be validated.
+              alert("Could not validate Token");
+          });
+      } else {
+
+          console.log("NO USErS");
+
+          // bring up login page
+          $state.go('app.login');
+
+      }
+
+
+
+
 
         // login popup
         $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -163,6 +190,7 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function ($scope,
             console.log("GOOD");
             alert("Post successful");
             $state.go('app.playlists');
+            window.location.reload();
 
         })
 
