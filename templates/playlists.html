@@ -1,0 +1,68 @@
+
+<ion-view view-title="Trendr">
+
+
+    <ion-content>
+
+        <ion-refresher refreshing-text="Refreshing" on-refresh="reloadPage()"></ion-refresher>
+
+
+        <h1>Today, I want to learn about</h1>
+
+
+        <div id="search">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i> <!-- search icon -->
+                <input type="text" placeholder="Search for learning resources!" ng-model="query"> <!-- search box -->
+            </label>
+        </div>
+
+
+
+        <!--<div class="list list-inset">
+
+            <div id="search">
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i> 
+                    <input type="text" placeholder="Search for learning resources!" ng-model="query"> 
+                </label>
+            </div>
+
+
+            <label class="item item-input item-select">
+                <div class="input-label">Sort by</div>
+                <select ng-model="orderProp">
+                    <option value="title">Alphabetical</option>
+                    <option value="-points" >Score</option>
+                </select>
+            </label>
+        </div>-->
+
+        
+
+
+
+        <!-- categories -->
+
+
+        <!-- sort by ????? -->
+
+
+        <div ng-controller="PlaylistsCtrl" class="list list-inset">
+
+            <ion-list>
+                <ion-item ng-repeat="playlist in playlists | filter:query | orderBy:orderProp" href="#/app/playlists/{{playlist.objectId}}">
+
+                    <button id="pointsButton"><i class="icon ion-arrow-up-b"></i><br />{{playlist.points}}</button>
+                    
+                    
+                    <div class="entry">{{playlist.title}}</div>
+                </ion-item>
+
+
+            </ion-list>
+
+        </div>
+        <br>
+    </ion-content>
+</ion-view>
