@@ -10,9 +10,10 @@
 	        </ion-nav-buttons>
 
             <ion-nav-buttons side="right">
-
+                <!-- Sign up -->
+                <button class="button button-clear button-calm" ng-hide="notlogged" ng-click="openModal(1)"><b>Sign Up</b></button>
                 <!-- Login Button -->
-                <button class="button button-clear button-calm" ng-hide="notlogged" id="loginButton" ng-click="openModal()"><b>Login</b></button>
+                <button class="button button-clear button-calm" ng-hide="notlogged" ng-click="openModal(2)"><b>Login</b></button>
 
                 <!-- Post Button -->
                 <button class="button button-balanced" ng-show = "logged" ng-click="post()" id="postButton"><i class="icon ion-compose"></i><b>Post</b></button>
@@ -43,13 +44,7 @@
                     <i class="icon ion-home">Home</i>
                 </ion-item>
 
-                <!--<ion-item nav-clear menu-close  href="#/app/login">
-                 <i class="ion-information-circled">Login</i>
-                </ion-item>-->
 
-                <ion-item nav-clear menu-close ng-hide = "notlogged" href="#/app/signup">
-                    <i class="icon ion-arrow-up-c">Sign Up</i>
-                </ion-item>
 
                 <ion-item nav-clear menu-close ng-show = "logged" ng-click="logout()">Logout</ion-item>
 

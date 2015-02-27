@@ -54,14 +54,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.signup', {
-    url: "/signup",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/signup.html"
-      }
-    }
-  })
+
 
   .state('app.search', {
     url: "/search",
