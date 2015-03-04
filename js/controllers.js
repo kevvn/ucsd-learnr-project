@@ -6,9 +6,8 @@ app.value('PARSE_CREDENTIALS', {
   //SESSION_TOKEN: 'pnktnjyb996sj4p156gjtp4im'
 })
 
-
-app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.woopra','Users', '$state', '$ionicModal',
-  function($scope, $analytics, $rootScope, Users, $state, $ionicModal) {
+app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicModal',
+  function($scope, $rootScope, Users, $state, $ionicModal) {
 
     //  var currentUser = $scope.username;
     //  var currentPass = $scope.password;
@@ -16,7 +15,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
     var currentUser = Parse.User.current();
     //  console.log(currentUser.id);
     //var userObject = currentUser.id;
-//    console.log($scope);
+    console.log($scope);
     if (currentUser) {
       var userObject = currentUser.id;
       $scope.logged = true;
@@ -30,7 +29,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
       });
     } else {
 
-      //console.log("NO USErS");
+      console.log("NO USErS");
 
       // bring up login page
       //$state.go('app.login');
@@ -41,7 +40,6 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
 
 
 
-    $analytics.eventTrack('sign_up_b');
 
     // Modal 1
     $ionicModal.fromTemplateUrl('templates/signup.html', {
@@ -95,7 +93,10 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
 
     $scope.doSignup = function(username, password) {
 
-  //    console.log(username);
+      woopra.track("sign_up_b", {
+      });
+
+      console.log(username);
       var name = username;
       var pass = password;
 
@@ -111,7 +112,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
           var currentUser = Parse.User.current();
           Parse.User.logIn(username, password, {
             success: function(user) {
-          //    console.log("SUCCESS");
+              console.log("SUCCESS");
 
 
               $state.go('app.playlists');
@@ -145,13 +146,13 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
     $scope.doLogin = function(username, password) {
 
 
-      //console.log("BOOOOOM");
+      console.log("BOOOOOM");
 
 
 
       Parse.User.logIn(username, password, {
         success: function(user) {
-        //  console.log("SUCCESS");
+          console.log("SUCCESS");
           $scope.closeModal();
           $scope.logged = true;
           $scope.notlogged = true;
@@ -176,6 +177,8 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
 
     $scope.post = function() {
 
+      woopra.track("post_ver_b", {
+      });
 
       // Form data for the login modal
       var currentUser = Parse.User.current();
@@ -199,7 +202,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
         //    console.log($scope);
       } else {
 
-    //    console.log("NO USErS");
+        console.log("NO USErS");
 
         // bring up login page
         $state.go('app.login');
@@ -217,7 +220,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'angularitics', 'angulartics.
       window.location.reload();
       var currentUser = Parse.User.current();
       //   window.location.reload();
-//      console.log("LOGGED OUT");
+      console.log("LOGGED OUT");
 
     }
 
@@ -231,6 +234,7 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function($scope, 
   $scope.newPost = function() {
 
     console.log($scope.name);
+    var currentUser = Parse.User.current();
 
     PostFactory.create({
       name: $scope.name,
@@ -238,16 +242,17 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function($scope, 
       points: 0,
       content: $scope.content,
       tags: $scope.tags,
-      tags2: $scope.tags2
+      tags2: $scope.tags2,
+      createdBy: currentUser.id
     }).success(function(data) {
-  //    console.log("GOOD");
+      console.log("GOOD");
       alert("Post successful");
       $state.go('app.playlists');
       window.location.reload();
 
     })
 
-//    console.log("SAVED!");
+    console.log("SAVED!");
 
   }
 
@@ -421,7 +426,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function($scope, PostF
   PostFactory.getAll().success(function(data) {
 
 
-//    console.log(data.results.length);
+    console.log(data.results.length);
 
     // push data into playlists array
     for (var i = 0; i < data.results.length; i++) {
@@ -437,7 +442,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function($scope, PostF
       });
 
     }
-    //console.log($scope);
+    console.log($scope);
     //    console.log(playlists.tags);
   })
 
@@ -456,7 +461,7 @@ app.controller('PlaylistsCtrl', ['$scope', 'PostFactory', function($scope, PostF
 app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams',
   function($scope, PostFactory, Users, $state) {
 
-//    console.log($scope);
+    console.log($scope);
 
     PostFactory.get($state.playlistId).success(function(data) {
 
@@ -470,7 +475,9 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
 
     $scope.favorite = function() {
       if ($scope.currentLoggedin) {
-//        console.log($scope.currentLoggedin.id);
+        woopra.track("favorite_ver_b", { logged: "logged"
+        });
+        console.log($scope.currentLoggedin.id);
 
         var favorite = Parse.Object.extend("favorite");
         var privateNote = new favorite();
@@ -479,7 +486,8 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
         privateNote.save();
 
       } else {
-
+        woopra.track("post_ver_b", {logged: "notlogged"
+        });
         alert("Please log in to favorite articles");
       }
 
@@ -492,7 +500,7 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
         PostFactory.update($state.playlistId, {
           points: $scope.points + 1
         }).success(function(data) {
-      //    console.log(data);
+          console.log(data);
 
         })
 
@@ -568,7 +576,61 @@ app.controller('FavoriteCtrl', ['$rootScope', '$scope', 'PostFactory', 'Users', 
 
     });
 
-  //  console.log($rootScope);
+    console.log($rootScope);
+
+
+  }
+]);
+
+app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$stateParams',
+  function($rootScope, $scope, PostFactory, $state) {
+
+    var current = $state.userId;
+    var object = [];
+    var ids = [];
+    var i = 0;
+    $rootScope.posts = [];
+
+    var posts = Parse.Object.extend("PostFactory");
+    var query = new Parse.Query(posts);
+
+    query.equalTo("createdBy", current);
+
+    query.find({
+      success: function(results) {
+          console.log("results");
+            console.log(results);
+
+        // Do something with the returned Parse.Object values
+        for (i = 0; i < results.length; i++) {
+
+          //object[i] = results[i];
+          ids[i] = results[i].id;
+      //    console.log(ids[i]);
+          PostFactory.get(results[i].id).success(function(data) {
+
+            console.log("data");
+            console.log(data);
+            $rootScope.posts.push({
+              objectId: data.objectId,
+              title: data.name,
+              points: data.points
+            });
+          })
+
+        }
+
+
+      },
+      error: function(error) {
+        alert("Error: " + error.code + " " + error.message);
+      }
+
+
+
+    });
+    console.log("hi");
+    console.log($rootScope);
 
 
   }

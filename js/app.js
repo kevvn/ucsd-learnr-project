@@ -15,7 +15,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     // for form inputs)
 
 
-    //Woopre start
+
 (function(){
         var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identify","visit","push","call","trackForm","trackClick"],c=function(){var t,i=this;for(i._e=[],t=0;r.length>t;t++)(function(t){i[t]=function(){return i._e.push([t].concat(Array.prototype.slice.call(arguments,0))),i}})(r[t])};for(n._w=n._w||{},t=0;a.length>t;t++)n._w[a[t]]=n[a[t]]=n[a[t]]||new c;i=o.createElement(s),i.async=1,i.src="//static.woopra.com/js/w.js",e=o.getElementsByTagName(s)[0],e.parentNode.insertBefore(i,e)
 })("woopra");
@@ -24,7 +24,9 @@ woopra.config({
     domain: 'learnrhelpr.herokuapp.com'
 });
 woopra.track();
-// woopra end
+
+
+
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -125,7 +127,18 @@ woopra.track();
         controller: 'FavoriteCtrl'
       }
     }
+  })
+
+  .state('app.mypost', {
+    url: "/mypost/:userId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/mypost.html",
+        controller: 'MyPostCtrl'
+      }
+    }
   });
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
