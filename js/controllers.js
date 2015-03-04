@@ -112,7 +112,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
           var currentUser = Parse.User.current();
           Parse.User.logIn(username, password, {
             success: function(user) {
-              console.log("SUCCESS");
+            //  console.log("SUCCESS");
 
 
               $state.go('app.playlists');
@@ -126,7 +126,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
                 alert(error.message);
 
               }
-              console.log(error);
+      //        console.log(error);
             }
           });
 
@@ -146,13 +146,13 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
     $scope.doLogin = function(username, password) {
 
 
-      console.log("BOOOOOM");
+    //  console.log("BOOOOOM");
 
 
 
       Parse.User.logIn(username, password, {
         success: function(user) {
-          console.log("SUCCESS");
+  //        console.log("SUCCESS");
           $scope.closeModal();
           $scope.logged = true;
           $scope.notlogged = true;
@@ -177,7 +177,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
 
     $scope.post = function() {
 
-      woopra.track("post_ver_b", {
+      woopra.track("post_ver_b", {logged: "logged"
       });
 
       // Form data for the login modal
@@ -202,8 +202,8 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
         //    console.log($scope);
       } else {
 
-        console.log("NO USErS");
-
+        woopra.track("post_ver_b", {logged: "notlogged"
+        });
         // bring up login page
         $state.go('app.login');
 
@@ -576,7 +576,6 @@ app.controller('FavoriteCtrl', ['$rootScope', '$scope', 'PostFactory', 'Users', 
 
     });
 
-    console.log($rootScope);
 
 
   }
@@ -591,6 +590,9 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
     var i = 0;
     $rootScope.posts = [];
 
+    woopra.track("mypost_ver_b"
+    });
+
     var posts = Parse.Object.extend("PostFactory");
     var query = new Parse.Query(posts);
 
@@ -598,8 +600,6 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
 
     query.find({
       success: function(results) {
-          console.log("results");
-            console.log(results);
 
         // Do something with the returned Parse.Object values
         for (i = 0; i < results.length; i++) {
@@ -609,8 +609,7 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
       //    console.log(ids[i]);
           PostFactory.get(results[i].id).success(function(data) {
 
-            console.log("data");
-            console.log(data);
+
             $rootScope.posts.push({
               objectId: data.objectId,
               title: data.name,
@@ -629,8 +628,6 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
 
 
     });
-    console.log("hi");
-    console.log($rootScope);
 
 
   }
