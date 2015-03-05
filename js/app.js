@@ -23,6 +23,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 woopra.config({
     domain: 'learnrhelpr.herokuapp.com'
 });
+woopra.identify({
+    name: Math.random()
+});
 woopra.track();
 
 
