@@ -112,7 +112,6 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
           var currentUser = Parse.User.current();
           Parse.User.logIn(username, password, {
             success: function(user) {
-            //  console.log("SUCCESS");
 
 
               $state.go('app.playlists');
@@ -126,7 +125,6 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
                 alert(error.message);
 
               }
-      //        console.log(error);
             }
           });
 
@@ -146,13 +144,9 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
     $scope.doLogin = function(username, password) {
 
 
-    //  console.log("BOOOOOM");
-
-
 
       Parse.User.logIn(username, password, {
         success: function(user) {
-  //        console.log("SUCCESS");
           $scope.closeModal();
           $scope.logged = true;
           $scope.notlogged = true;
@@ -204,6 +198,8 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
 
         woopra.track("post_ver_b", {logged: "notlogged"
         });
+        console.log("NO USErS");
+
         // bring up login page
         $state.go('app.login');
 
@@ -235,6 +231,7 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function($scope, 
 
     console.log($scope.name);
     var currentUser = Parse.User.current();
+
 
     PostFactory.create({
       name: $scope.name,
@@ -475,8 +472,10 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
 
     $scope.favorite = function() {
       if ($scope.currentLoggedin) {
+
         woopra.track("favorite_ver_b", { logged: "logged"
         });
+
         console.log($scope.currentLoggedin.id);
 
         var favorite = Parse.Object.extend("favorite");
@@ -488,6 +487,7 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
       } else {
         woopra.track("post_ver_b", {logged: "notlogged"
         });
+
         alert("Please log in to favorite articles");
       }
 
@@ -577,7 +577,6 @@ app.controller('FavoriteCtrl', ['$rootScope', '$scope', 'PostFactory', 'Users', 
     });
 
 
-
   }
 ]);
 
@@ -629,6 +628,7 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
 
     });
 
+    console.log($rootScope);
 
   }
 ]);

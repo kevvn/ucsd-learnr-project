@@ -11,7 +11,9 @@
 
             <ion-nav-buttons side="right">
                 <!-- Sign up -->
-                <button class="button button-clear button-calm" id="sign_up_b" ng-hide="notlogged" ng-click="openModal(1)"><b>Sign Up</b></button>
+
+                <button class="button button-clear button-calm" ng-hide="notlogged" ng-click="openModal(1)"><b>Sign Up</b></button>
+
                 <!-- Login Button -->
                 <button class="button button-calm" ng-hide="notlogged" ng-click="openModal(2)"><b>Login</b></button>
 
@@ -43,8 +45,6 @@
                 <ion-item nav-clear menu-close href="#/app/playlists">
                     <i class="icon ion-home">Home</i>
                 </ion-item>
-
-
                 <ion-item nav-clear menu-close ng-show ="logged" href="#/app/mypost/{{currentLoggedin.id}}">
                     My Posts
                 </ion-item>

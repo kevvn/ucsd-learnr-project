@@ -27,7 +27,6 @@ woopra.track();
 
 
 
-
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -127,6 +126,7 @@ woopra.track();
         controller: 'FavoriteCtrl'
       }
     }
+
   })
 
   .state('app.mypost', {
