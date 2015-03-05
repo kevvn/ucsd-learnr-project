@@ -591,7 +591,7 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
     $rootScope.posts = [];
 
     woopra.track("mypost_ver_b"
-    });
+    );
 
     var posts = Parse.Object.extend("PostFactory");
     var query = new Parse.Query(posts);
