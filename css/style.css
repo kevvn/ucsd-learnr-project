@@ -1,5 +1,6 @@
 /* Empty. Add your own CSS if you like */
 
+
 input[type="search"]::-webkit-search-cancel-button {
 
   /* Remove default */
@@ -22,6 +23,25 @@ input[type="search"]::-webkit-search-cancel-button {
 
 }
 
+@font-face {
+    font-family: 'Billabong';
+    src: url('../fonts/Billabong.eot');
+    src: url('../fonts/Billabong.eot') format('embedded-opentype'),
+         url('../fonts/Billabong.woff2') format('woff2'),
+         url('../fonts/Billabong.woff') format('woff'),
+         url('../fonts/Billabong.ttf') format('truetype'),
+         url('../fonts/Billabong.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../fonts/Lato-Regular.eot');
+    src: url('../fonts/Lato-Regular.eot') format('embedded-opentype'),
+         url('../fonts/Lato-Regular.woff2') format('woff2'),
+         url('../fonts/Lato-Regular.woff') format('woff'),
+         url('../fonts/Lato-Regular.ttf') format('truetype'),
+         url('../fonts/Lato-Regular.svg') format('svg');
+}
 
 #postButton {
     /*margin: 0px 100px 0px 0px;*/
@@ -47,6 +67,7 @@ h1 {
 }
 
 .pane{
+
 	background-color:#EDFDF4;
 
 }

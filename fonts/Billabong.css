@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Billabong';
+    src: url('../fonts/Billabong.eot');
+    src: url('../fonts/Billabong.eot') format('embedded-opentype'),
+         url('../fonts/Billabong.woff2') format('woff2'),
+         url('../fonts/Billabong.woff') format('woff'),
+         url('../fonts/Billabong.ttf') format('truetype'),
+         url('../fonts/Billabong.svg#Billabong') format('svg');
+}

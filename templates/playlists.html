@@ -1,5 +1,8 @@
 
-<ion-view view-title="Trendr">
+<ion-view>
+  <ion-nav-title>
+    <font face="Billabong" size= "7">Learnr</font>
+    </ion-nav-title>
 
 
     <ion-content>
@@ -7,7 +10,7 @@
         <ion-refresher refreshing-text="Refreshing" on-refresh="reloadPage()"></ion-refresher>
 
 
-        <h1>Today, I want to learn about</h1>
+        <h1 font-family="Lato-Regular">Today, I want to learn about</h1>
 
 
         <div id="search">
@@ -23,8 +26,8 @@
 
             <div id="search">
                 <label class="item item-input">
-                    <i class="icon ion-search placeholder-icon"></i> 
-                    <input type="text" placeholder="Search for learning resources!" ng-model="query"> 
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="text" placeholder="Search for learning resources!" ng-model="query">
                 </label>
             </div>
 
@@ -38,7 +41,7 @@
             </label>
         </div>-->
 
-        
+
 
 
 
@@ -54,8 +57,8 @@
                 <ion-item ng-repeat="playlist in playlists | filter:query | orderBy:orderProp" href="#/app/playlists/{{playlist.objectId}}">
 
                     <button id="pointsButton"><i class="icon ion-arrow-up-b"></i><br />{{playlist.points}}</button>
-                    
-                    
+
+
                     <div class="entry">{{playlist.title}}</div>
                 </ion-item>
 

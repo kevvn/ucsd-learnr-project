@@ -83,7 +83,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
     // Angular will broadcast a $destroy event just before tearing down a scope
     // and removing the scope from its parent.
     $scope.$on('$destroy', function() {
-  //    console.log('Destroying modals...');
+      //    console.log('Destroying modals...');
       $scope.oModal1.remove();
       $scope.oModal2.remove();
     });
@@ -93,8 +93,7 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
 
     $scope.doSignup = function(username, password) {
 
-      woopra.track("sign_up_b", {
-      });
+      woopra.track("sign_up_b", {});
 
       console.log(username);
       var name = username;
@@ -171,7 +170,8 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
 
     $scope.post = function() {
 
-      woopra.track("post_ver_b", {logged: "logged"
+      woopra.track("post_ver_b", {
+        logged: "logged"
       });
 
       // Form data for the login modal
@@ -196,7 +196,8 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
         //    console.log($scope);
       } else {
 
-        woopra.track("post_ver_b", {logged: "notlogged"
+        woopra.track("post_ver_b", {
+          logged: "notlogged"
         });
         console.log("NO USErS");
 
@@ -229,27 +230,33 @@ app.controller('PostCtrl', ['$scope', 'PostFactory', '$state', function($scope, 
 
   $scope.newPost = function() {
 
-    console.log($scope.name);
-    var currentUser = Parse.User.current();
+    $scope.pattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+
+    if ($scope.url.match($scope.pattern)) {
+
+      var currentUser = Parse.User.current();
 
 
-    PostFactory.create({
-      name: $scope.name,
-      url: $scope.url,
-      points: 0,
-      content: $scope.content,
-      tags: $scope.tags,
-      tags2: $scope.tags2,
-      createdBy: currentUser.id
-    }).success(function(data) {
-      console.log("GOOD");
-      alert("Post successful");
-      $state.go('app.playlists');
-      window.location.reload();
+      PostFactory.create({
+        name: $scope.name,
+        url: $scope.url,
+        points: 0,
+        content: $scope.content,
+        tags: $scope.tags,
+        tags2: $scope.tags2,
+        createdBy: currentUser.id
+      }).success(function(data) {
+        console.log("GOOD");
+        alert("Post successful");
+        $state.go('app.playlists');
+        window.location.reload();
 
-    })
+      })
+    } else {
+      $scope.errURL = true;
 
-    console.log("SAVED!");
+    }
+
 
   }
 
@@ -472,8 +479,10 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
 
     $scope.favorite = function() {
       if ($scope.currentLoggedin) {
-
-        woopra.track("favorite_ver_b", { logged: "logged"
+        $scope.fave = true;
+        $scope.faved = true;
+        woopra.track("favorite_ver_b", {
+          logged: "logged"
         });
 
         console.log($scope.currentLoggedin.id);
@@ -485,7 +494,8 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
         privateNote.save();
 
       } else {
-        woopra.track("post_ver_b", {logged: "notlogged"
+        woopra.track("post_ver_b", {
+          logged: "notlogged"
         });
 
         alert("Please log in to favorite articles");
@@ -495,8 +505,10 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
     $scope.upvote = function() {
       if ($scope.currentLoggedin) {
 
-        // haven't upvoted before
 
+
+        $scope.like = true;
+        $scope.liked = true;
         PostFactory.update($state.playlistId, {
           points: $scope.points + 1
         }).success(function(data) {
@@ -517,7 +529,8 @@ app.controller('PlaylistCtrl', ['$scope', 'PostFactory', 'Users', '$stateParams'
     }
     $scope.report = function() {
       if ($scope.currentLoggedin) {
-        alert("This article has been reported");
+        $scope.repot = true;
+        $scope.repotted = true;
       } else {
 
         alert("Please log in to report articles");
@@ -589,8 +602,7 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
     var i = 0;
     $rootScope.posts = [];
 
-    woopra.track("mypost_ver_b"
-    );
+    woopra.track("mypost_ver_b");
 
     var posts = Parse.Object.extend("PostFactory");
     var query = new Parse.Query(posts);
@@ -605,7 +617,7 @@ app.controller('MyPostCtrl', ['$rootScope', '$scope', 'PostFactory', '$statePara
 
           //object[i] = results[i];
           ids[i] = results[i].id;
-      //    console.log(ids[i]);
+          //    console.log(ids[i]);
           PostFactory.get(results[i].id).success(function(data) {
 
 
