@@ -1,61 +1,57 @@
 <ion view>
   <ion-nav-title>
-    <font face="Lato-Regular" size= "5">Article</font>
-    </ion-nav-title>
+    <font face="Lato-Regular" size="5">Article</font>
+  </ion-nav-title>
   <ion-content>
 
 
 
- <div class="list card" ng-controller="PlaylistCtrl" >
+    <div class="list card" ng-controller="PlaylistCtrl">
 
-  <div class="item ">
-    <h2>{{title}}</h2>
-  </div>
+      <div class="item ">
+        <h2>{{title}}</h2>
+      </div>
 
-  <div class="item item-body">
-    <p>
-      {{content}}
+      <div class="item item-body">
+        <p>
+          {{content}}
 
 
-    </p>
-    <p>
-      <a href="#" class="subdued">{{points}} Like</a>
-      <a href="{{url}}" class="subdued">Source article</a>
-    </p>
-  </div>
+        </p>
+        <p>
+          <a href="#" class="subdued">{{points}} Like</a>
+          <a href="{{url}}" class="subdued">Source article</a>
+        </p>
+      </div>
 
-  <div class="item tabs tabs-secondary tabs-icon-left">
-    <a ng-show ="liked" class="tab-item" ng-click="upvote()">
-      <i class="icon ion-thumbsup"></i>
-      Upvoted
-    </a>
-    <a ng-hide ="like" class="tab-item" ng-click="upvote()">
-      <i class="icon ion-thumbsup"></i>
-      Upvote
-    </a>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a ng-show="liked" class="tab-item" ng-click="upvote()">
+          <i class="icon ion-thumbsup"></i> Upvoted
+        </a>
+        <a ng-hide="like" class="tab-item" ng-click="upvote()">
+          <i class="icon ion-thumbsup"></i> Upvote
+        </a>
 
-    <a ng-show ="faved" class="tab-item" ng-click="favorite()">
-      <i class="icon ion-heart"></i>
-      Favorited
-    </a>
-    <a ng-hide ="fave" class="tab-item" ng-click="favorite()">
-      <i class="icon ion-heart"></i>
-      Favorite
-    </a>
+        <a ng-show="faved" class="tab-item" ng-click="favorite()">
+          <i class="icon ion-heart"></i> Favorited
+        </a>
+        <a ng-hide="fave" class="tab-item" ng-click="favorite()">
+          <i class="icon ion-heart"></i> Favorite
+        </a>
 
-    <a ng-show ="repotted" class="tab-item" ng-click="report()">
-      <i class="icon ion-sad"></i>
-      Reportted
-    </a>
+        <a ng-show="repotted" class="tab-item" ng-click="report()">
+          <i class="icon ion-sad"></i> Reportted
+        </a>
 
-    <a ng-hide= "repot" class="tab-item" ng-click="report()">
-      <i class="icon ion-sad"></i>
-      Report
-    </a>
+        <a ng-hide="repot" class="tab-item" ng-click="report()">
+          <i class="icon ion-sad"></i> Report
+        </a>
 
-  </div>
+      </div>
 
-</div>
-<br><br><br>
+    </div>
+    <br>
+    <br>
+    <br>
   </ion-content>
 </ion view>

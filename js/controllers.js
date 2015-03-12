@@ -93,72 +93,72 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
 
     $scope.doSignup = function(username, password, cpassword) {
 
-      $scope.$watch(  $scope.err4, function(newValue, oldValue) {
+      $scope.$watch($scope.err4, function(newValue, oldValue) {
         $scope.err4 = false;
       });
-      $scope.$watch( $scope.err5, function(newValue, oldValue) {
+      $scope.$watch($scope.err5, function(newValue, oldValue) {
         $scope.err5 = false;
       });
 
       var name = username;
       var pass = password;
       var cpass = cpassword;
-      if(pass != cpass){
+      if (pass != cpass) {
 
-        $scope.err4=true;
-        $scope.$watch(  $scope.err4, function(newValue, oldValue) {
-          $scope.err4=true;
+        $scope.err4 = true;
+        $scope.$watch($scope.err4, function(newValue, oldValue) {
+          $scope.err4 = true;
         });
         $scope.$digest();
 
 
-      }else{
-      var user = new Parse.User();
-      user.set("username", username);
-      user.set("password", password);
+      } else {
+        var user = new Parse.User();
+        user.set("username", username);
+        user.set("password", password);
 
 
-      user.signUp(null, {
-        success: function(user) {
-          // Hooray! Let them use the app now.
-          // Lets them log in
-          var currentUser = Parse.User.current();
-          Parse.User.logIn(username, password, {
-            success: function(user) {
+        user.signUp(null, {
+          success: function(user) {
+            // Hooray! Let them use the app now.
+            // Lets them log in
+            var currentUser = Parse.User.current();
+            Parse.User.logIn(username, password, {
+              success: function(user) {
 
 
-              $state.go('app.playlists');
-              console.log($state);
+                $state.go('app.playlists');
+                console.log($state);
 
-              window.location.reload();
-              //  $state.go('app.playlists');
-            },
-            error: function(user, error) {
+                window.location.reload();
+                //  $state.go('app.playlists');
+              },
+              error: function(user, error) {
 
-              console.log(error);
-            }
-          });
-
-          //$state.go('app.playlists');
-
-        },
-        error: function(user, error) {
-          // Show the error message somewhere and let the user try again.
-        //  alert("Error: " + error.code + " " + error.message);
-
-          if(error.code == 202){
-            console.log("true");
-
-            $scope.$watch(  $scope.err5, function(newValue, oldValue) {
-              $scope.err5 = true;
+                console.log(error);
+              }
             });
-          }
-          $scope.$digest();
 
-        }
-      });
+            //$state.go('app.playlists');
+
+          },
+          error: function(user, error) {
+            // Show the error message somewhere and let the user try again.
+            //  alert("Error: " + error.code + " " + error.message);
+
+            if (error.code == 202) {
+              console.log("true");
+
+              $scope.$watch($scope.err5, function(newValue, oldValue) {
+                $scope.err5 = true;
+              });
+            }
+            $scope.$digest();
+
+          }
+        });
+      }
     }
-  }
 
 
 
@@ -168,13 +168,13 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
       $scope.err2 = false;
       $scope.err3 = false;
 
-      $scope.$watch(  $scope.err1, function(newValue, oldValue) {
+      $scope.$watch($scope.err1, function(newValue, oldValue) {
         $scope.err1 = false;
       });
-      $scope.$watch( $scope.err2, function(newValue, oldValue) {
+      $scope.$watch($scope.err2, function(newValue, oldValue) {
         $scope.err2 = false;
       });
-      $scope.$watch(  $scope.err3, function(newValue, oldValue) {
+      $scope.$watch($scope.err3, function(newValue, oldValue) {
         $scope.err3 = false;
       });
 
@@ -192,28 +192,28 @@ app.controller('AppCtrl', ['$scope', '$rootScope', 'Users', '$state', '$ionicMod
         error: function(user, error) {
           var code = error.code;
           if (code === 101) {
-            console.log($scope.err3 );
+            console.log($scope.err3);
             $scope.err3 = true;
-            $scope.$watch(  $scope.err3, function(newValue, oldValue) {
+            $scope.$watch($scope.err3, function(newValue, oldValue) {
               if (newValue != oldValue)
-              $scope.err3 = true;
+                $scope.err3 = true;
             }, true);
           }
           if (code === 200) {
 
             $scope.err1 = true;
-            $scope.$watch(  $scope.err1, function(newValue, oldValue) {
+            $scope.$watch($scope.err1, function(newValue, oldValue) {
               if (newValue != oldValue)
-              $scope.err1 = true;
+                $scope.err1 = true;
             }, true);
 
           }
           if (code === 201) {
 
             $scope.err2 = true;
-            $scope.$watch(  $scope.err2, function(newValue, oldValue) {
+            $scope.$watch($scope.err2, function(newValue, oldValue) {
               if (newValue != oldValue)
-              $scope.err2 = true;
+                $scope.err2 = true;
             }, true);
           }
           $scope.$digest();

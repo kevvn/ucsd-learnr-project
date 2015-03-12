@@ -1,42 +1,42 @@
 <ion-modal-view>
-        <ion-header-bar>
-            <h1 class="title">Sign up</h1>
+  <ion-header-bar>
+    <h1 class="title">Sign up</h1>
 
-            <!--<div>
+    <!--<div>
                 Don't have an account? <a href="#/app/signup">Sign up</a>
             </div>-->
-            <div class="buttons">
-                <button class="button button-clear" ng-click="closeModal(1)">Close</button>
-            </div>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal(1)">Close</button>
+    </div>
 
-        </ion-header-bar>
-        <ion-content>
+  </ion-header-bar>
+  <ion-content>
 
-            <form ng-submit="doSignup(username,password,cpassword)">
-                <div class="list">
-                    <label class="item item-input">
-                        <span class="input-label">Username</span>
-                        <input type="text" ng-model="username" required>
-                    </label>
+    <form ng-submit="doSignup(username,password,cpassword)">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="username" required>
+        </label>
 
-                    <span ng-show="err5" ng-style= "{color: 'red'}" > Username is already taken </span>
-                    <label class="item item-input">
-                        <span class="input-label">Password</span>
-                        <input type="password" ng-model="password" required>
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Confirm Password</span>
-                        <input type="password" ng-model="cpassword" required>
-                    </label>
+        <span ng-show="err5" ng-style="{color: 'red'}"> Username is already taken </span>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="password" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Confirm Password</span>
+          <input type="password" ng-model="cpassword" required>
+        </label>
 
-                    <span ng-show="err4" ng-style= "{color: 'red'}" > Entered passwords do not match </span>
+        <span ng-show="err4" ng-style="{color: 'red'}"> Entered passwords do not match </span>
 
-                    <label class="item">
-                        <button class="button button-block button-positive" type="submit">Sign up</button>
-                    </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Sign up</button>
+        </label>
 
-                </div>
-            </form>
+      </div>
+    </form>
 
-        </ion-content>
+  </ion-content>
 </ion-modal-view>
