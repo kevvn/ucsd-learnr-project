@@ -9,26 +9,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
       Parse.initialize("qCKMCAPQBXhmMghKpKjkkNGhejWQ5w7Sm2NpYmnH", "NCteUlF8BFnxNniGAi6JqxbxxL5hKcUXlR4uECnn");
-      //Parse.initialize("8lI28e5lGH37hrHAcbLDVuLM9xXPWTrHCPG4rY8L", "JyA0uBxQrL4SLqZ6tdIT4CKY1og7PW7ryCquxy8m");
-
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-
-
-
-(function(){
-        var t,i,e,n=window,o=document,a=arguments,s="script",r=["config","track","identify","visit","push","call","trackForm","trackClick"],c=function(){var t,i=this;for(i._e=[],t=0;r.length>t;t++)(function(t){i[t]=function(){return i._e.push([t].concat(Array.prototype.slice.call(arguments,0))),i}})(r[t])};for(n._w=n._w||{},t=0;a.length>t;t++)n._w[a[t]]=n[a[t]]=n[a[t]]||new c;i=o.createElement(s),i.async=1,i.src="//static.woopra.com/js/w.js",e=o.getElementsByTagName(s)[0],e.parentNode.insertBefore(i,e)
-})("woopra");
-
-woopra.config({
-    domain: 'learnrhelpr.herokuapp.com'
-});
-woopra.identify({
-    name: Math.random()
-});
-woopra.track();
-
-
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -39,7 +19,6 @@ woopra.track();
     }
   });
 })
-
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
