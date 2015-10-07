@@ -2166,7 +2166,8 @@ function summonerIdLookup(summonername) {
 function previousGameLookup(){
     if (summonerIden !== "") {
         $.ajax({
-            url: 'https//na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/' + summonerIden + '?beginIndex=0&endIndex=1?api_key=' + APIKEY,
+            
+            url: 'https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/' + summonerIden + '?beginIndex=0&endIndex=1&api_key=' + APIKEY,
             type: 'GET',
             dataType: 'json',
             data: {
